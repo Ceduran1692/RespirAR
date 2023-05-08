@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">RespirAR</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_us">About us</string>
+    <string name="test">Test</string>
+    <string name="about_us_description">El proyecto RespirAR es una plataforma abierta que comprende el monitoreo de la calidad medioambiental a través de las distintas estaciones
+meteorológicas</string>
 </resources>

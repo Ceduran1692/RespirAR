@@ -8,5 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_background_color">#BCE1B7</color>
-    <color name="navbar_background">#2F6329</color>
+    <color name="navbar_background_color">#2F6329</color>
+    <color name="lg_text_color">#40904D</color>
 </resources>
