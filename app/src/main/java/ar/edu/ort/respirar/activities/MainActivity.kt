@@ -4,9 +4,7 @@ package ar.edu.ort.respirar.activities
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -17,7 +15,6 @@ import ar.edu.ort.respirar.databinding.ActivityMainBinding
 import ar.edu.ort.respirar.fragments.AboutUsFragment
 import ar.edu.ort.respirar.fragments.EstationListFragment
 import ar.edu.ort.respirar.fragments.MapsFragment
-import ar.edu.ort.respirar.fragments.NavigationFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
