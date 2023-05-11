@@ -5,4 +5,6 @@
     <string name="test">Test</string>
     <string name="about_us_description">El proyecto RespirAR es una plataforma abierta que comprende el monitoreo de la calidad medioambiental a través de las distintas estaciones
 meteorológicas</string>
+    <string name="navigation_drawer_open">Open</string>
+    <string name="navigation_drawer_close">Close</string>
 </resources>
