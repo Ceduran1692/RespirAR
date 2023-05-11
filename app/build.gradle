@@ -50,4 +50,14 @@ dependencies {
     def lottieVersion = "6.0.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+    //Navigation
+    implementation "androidx.navigation:navigation-fragment-ktx:2.5.3"
+    implementation "androidx.navigation:navigation-ui-ktx:2.5.3"
+
+    //Drawer
+    implementation 'androidx.drawerlayout:drawerlayout:1.2.0'
+
+    //Coordinator
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+
 }
