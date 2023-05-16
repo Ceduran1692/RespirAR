@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.activities
+package ar.edu.ort.respirar.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,11 +7,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
+import ar.edu.ort.respirar.entities.data.CustomEstation
 import ar.edu.ort.respirar.fragments.StationListFragment
+import ar.edu.ort.respirar.holders.CustomViewHolder
 
-class CustomAdapter(private val currentFragmentType: String) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private val currentFragmentType: String) : RecyclerView.Adapter<CustomViewHolder>() {
 
-    private var data: List<StationListFragment.Estacion> = emptyList()
+    private var data: List<CustomEstation> = emptyList()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -21,23 +23,27 @@ class CustomAdapter(private val currentFragmentType: String) : RecyclerView.Adap
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_station_layout, parent, false)
-        return ViewHolder(view)
+        return CustomViewHolder(view)
     }
 
-    override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder, i: Int) {
         val card = data[i]
-        viewHolder.itemImage.setImageDrawable(ContextCompat.getDrawable(viewHolder.itemView.context, card.image))
-        viewHolder.itemTitle.text = card.titulo
-        viewHolder.itemDetails.text = StationListFragment.getDetails(card)
+
+        holder.render(card)
+        /*
+        holder.itemImage.setImageDrawable(ContextCompat.getDrawable(holder.itemView.context, card.image))
+        holder.itemTitle.text = card.titulo
+        holder.itemDetails.text = StationListFragment.getDetails(card)
+        */
     }
 
     override fun getItemCount(): Int {
         return data.size
     }
 
-    fun setData(cards: Array<StationListFragment.Estacion>) {
+    fun setData(cards: Array<CustomEstation>) {
         data = cards.toList()
         notifyDataSetChanged()
     }
