@@ -60,4 +60,7 @@ dependencies {
     //Coordinator
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
 
+    //OpenStreetMap
+    implementation 'org.osmdroid:osmdroid-android:6.1.11'
+
 }
