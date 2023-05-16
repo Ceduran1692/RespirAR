@@ -13,11 +13,11 @@ import androidx.fragment.app.Fragment
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.databinding.ActivityMainBinding
 import ar.edu.ort.respirar.fragments.AboutUsFragment
-import ar.edu.ort.respirar.fragments.EstationListFragment
+import ar.edu.ort.respirar.fragments.StationListFragment
 import ar.edu.ort.respirar.fragments.MapsFragment
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private lateinit var binding:ActivityMainBinding
 
@@ -29,20 +29,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        replaceFragment(MapsFragment())
-        //replaceFragment(NavigationFragment())
-
-//        binding.navBarMain.setOnItemSelectedListener {
-//            when(it.itemId){
-//                R.id.nav_map -> replaceFragment(MapsFragment())
-//                R.id.nav_estationList -> replaceFragment(EstationListFragment())
-//
-//                else -> {}
-//            }
-//
-//            true
-//        }
 
         //NAVIGATION VIEW
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
@@ -60,7 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView: NavigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener(this)
 
-
+        replaceFragment(MapsFragment())
     }
 
     private fun replaceFragment(fragment:Fragment){
@@ -75,7 +61,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when(item.itemId){
             R.id.home -> replaceFragment(MapsFragment())
             R.id.map -> replaceFragment(MapsFragment())
-            R.id.stations -> replaceFragment(EstationListFragment())
+            R.id.stations -> replaceFragment(StationListFragment())
             R.id.favorite -> Toast.makeText(this,"Favoritos", Toast.LENGTH_SHORT).show()
             R.id.about_us -> replaceFragment(AboutUsFragment())
             R.id.settings -> Toast.makeText(this,"Configuracion", Toast.LENGTH_SHORT).show()
