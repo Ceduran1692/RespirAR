@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.fragments
+package ar.edu.ort.respirar.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -13,7 +13,7 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.entities.data.CustomEstation
+import ar.edu.ort.respirar.data.models.CustomEstation
 
 
 class MapsFragment : Fragment()  {

@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.activities.splash
+package ar.edu.ort.respirar.ui.activities.splash
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.activities.MainActivity
+import ar.edu.ort.respirar.ui.activities.MainActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

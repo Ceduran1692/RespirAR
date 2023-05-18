@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.fragments
+package ar.edu.ort.respirar.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.adapters.CustomAdapter
-import ar.edu.ort.respirar.entities.data.CustomEstation
+import ar.edu.ort.respirar.data.models.CustomEstation
 import org.osmdroid.util.GeoPoint
 
 

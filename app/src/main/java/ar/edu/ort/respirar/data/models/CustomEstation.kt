@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.entities.data
+package ar.edu.ort.respirar.data.models
 
 import org.osmdroid.util.GeoPoint
 
@@ -7,5 +7,5 @@ data class CustomEstation(
     val titulo: String,
     val temperatura: Double,
     val humedad: Double,
-    val image: Int
+     val image: Int
     )

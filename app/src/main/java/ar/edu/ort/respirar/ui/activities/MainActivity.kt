@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.activities
+package ar.edu.ort.respirar.ui.activities
 
 
 import android.content.res.Configuration
@@ -12,9 +12,9 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.databinding.ActivityMainBinding
-import ar.edu.ort.respirar.fragments.AboutUsFragment
-import ar.edu.ort.respirar.fragments.StationListFragment
-import ar.edu.ort.respirar.fragments.MapsFragment
+import ar.edu.ort.respirar.ui.fragments.AboutUsFragment
+import ar.edu.ort.respirar.ui.fragments.StationListFragment
+import ar.edu.ort.respirar.ui.fragments.MapsFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
