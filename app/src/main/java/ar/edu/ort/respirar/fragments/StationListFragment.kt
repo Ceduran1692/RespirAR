@@ -19,38 +19,38 @@ class StationListFragment : Fragment() {
         val estaciones = arrayOf(
             CustomEstation(
                 GeoPoint(-34.670267, -58.370969),
-                "CustomEstation 1",
+                "Estacion 1",
                 25.0,
                 60.0,
-                R.drawable.baseline_info_black_24
+                R.drawable.baseline_location_on_red_24
             ),
             CustomEstation(
                 GeoPoint(-34.545278, -58.449722),
-                "CustomEstation 2",
+                "Estacion 2",
                 25.0,
                 60.0,
-                R.drawable.baseline_info_black_24
+                R.drawable.baseline_location_on_red_24
             ),
             CustomEstation(
                 GeoPoint(-34.63565, -58.36465),
-                "CustomEstation 3",
+                "Estacion 3",
                 25.0,
                 60.0,
-                R.drawable.baseline_info_black_24
+                R.drawable.baseline_location_on_red_24
             ),
             CustomEstation(
                 GeoPoint(-34.652064, -58.440119),
-                "CustomEstation 4",
+                "Estacion 4",
                 25.0,
                 60.0,
-                R.drawable.baseline_info_black_24
+                R.drawable.baseline_location_on_red_24
             ),
             CustomEstation(
                 GeoPoint(-34.6675, -58.368611),
-                "CustomEstation 5",
+                "Estacion 5",
                 25.0,
                 60.0,
-                R.drawable.baseline_info_black_24
+                R.drawable.baseline_location_on_red_24
             )
         )
         fun getDetails(CustomEstation: CustomEstation): String =
