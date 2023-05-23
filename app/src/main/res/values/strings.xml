@@ -1,10 +1,37 @@
 <resources>
     <string name="app_name">RespirAR</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="about_us">About us</string>
+
     <string name="test">Test</string>
-    <string name="about_us_description">El proyecto RespirAR es una plataforma abierta que comprende el monitoreo de la calidad medioambiental a través de las distintas estaciones
-meteorológicas</string>
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet. In aspernatur laudantium eum suscipit voluptas ad officiis praesentium qui ducimus quaerat 33 velit numquam et atque voluptatum. Qui libero velit sed incidunt provident 33 labore porro sed vitae consectetur eos esse sequi At expedita minima aut molestiae aperiam. Quo fuga dolor qui nihil soluta sed aperiam esse. Aut dolor perspiciatis sed amet dolorem id nihil neque ex officiis praesentium et possimus animi sed enim praesentium.
+Ea delectus deleniti id porro dolor qui temporibus minima sed excepturi laborum qui inventore commodi et tenetur fuga est omnis officia. Ut quas corporis ut sint voluptatem id consequatur nisi et corporis quisquam et vitae voluptatem. Et delectus omnis et distinctio recusandae ut consequatur exercitationem. Ut ipsa porro At perspiciatis velit et inventore dolor vel consequatur incidunt eum praesentium obcaecati ad molestias soluta!
+Ea unde dolorem est repellendus maiores aut illo nesciunt aut doloremque soluta a saepe consequuntur At eaque internos! Ut assumenda autem nam expedita magni et quia eveniet qui animi iure. 33 magni impedit aut adipisci fuga quo quia error. Non blanditiis vero aut nihil magni cum maiores doloremque in libero laboriosam.
+    </string>
+<!--    Names-->
+    <string name="home_name">Home</string>
+    <string name="ciudades_name">Instituto Ciudades del Futuro</string>
+    <string name="map_name">Mapa</string>
+    <string name="station_name">Estaciones</string>
+    <string name="favorite_name">Favoritos</string>
+    <string name="about_us_name">Nosotros</string>
+    <string name="station_list_name">Lista de Estaciones</string>
+    <string name="station_details_name">Detalles de Estacion</string>
+
+<!--    Drawer-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
+
+
+<!-- **********************/ ABOUT US FRAGMENT /******-->
+
+    <string name="about_us">About us</string>
+    <string name="fiware">Fiware</string>
+    <string name="ciudades_del_futuro">ciudades del futuro</string>
+    <string name="about_us_description">El proyecto RespirAR es una plataforma abierta que comprende el monitoreo de la calidad medioambiental a través de las distintas estaciones meteorológicas</string>
+    <string name="ciudades_del_futuro_description">Es una iniciativa del INSTITUTO CIUDADES DEL FUTURO, un organismo que acompaña a las comunidades locales de Argentina y Latinoamérica en el diseño e implementación de acciones novedosas para un desarrollo humano, apoyándose en nuevas tecnologías y modelos de gestión.</string>
+    <string name="fiware_description"> FIWARE es una plataforma abierta y estandarizada que facilita el desarrollo de aplicaciones y servicios inteligentes en el ámbito de las ciudades inteligentes, la industria 4.0 y el Internet de las Cosas. Su enfoque en la interoperabilidad, la reutilización de componentes y la escalabilidad la convierten en una opción atractiva para los desarrolladores que buscan construir soluciones innovadoras y eficientes.</string>
+
+
 </resources>
+

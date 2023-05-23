@@ -8,6 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="app_background_color">#BCE1B7</color>
+    <color name="background_fyware">#236186</color>
+    <color name="ic_about_us_background">#3DDC84</color>
+    <color name="ic_ciudades_del_futuro_background">#3DDC84</color>
+    <color name="ic_fiware_background">#3DDC84</color>
     <color name="navbar_background_color">#2F6329</color>
     <color name="appbar_background_color">#00965A</color>
     <color name="lg_text_color">#40904D</color>

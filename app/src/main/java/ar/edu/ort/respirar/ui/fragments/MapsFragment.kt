@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.fragments
+package ar.edu.ort.respirar.ui.fragments
 
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +13,7 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import ar.edu.ort.respirar.R
+import ar.edu.ort.respirar.data.models.CustomEstation
 
 
 class MapsFragment : Fragment()  {
@@ -50,12 +51,12 @@ class MapsFragment : Fragment()  {
         mapView.controller.setCenter(buenosAires)
 
         //Estaciones prueba
-        val estaciones: Array<StationListFragment.Estacion> = StationListFragment.estaciones
+        val estaciones: Array<CustomEstation> = StationListFragment.estaciones
         addMarkersOnMap(estaciones)
 
     }
 
-    fun addMarkersOnMap(estaciones: Array<StationListFragment.Estacion>) {
+    fun addMarkersOnMap(estaciones: Array<CustomEstation>) {
         for (estacion in estaciones) {
             val latitude = estacion.geoPoint.latitude
             val longitude = estacion.geoPoint.longitude
