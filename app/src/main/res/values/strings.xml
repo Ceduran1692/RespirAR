@@ -8,6 +8,17 @@
 Ea delectus deleniti id porro dolor qui temporibus minima sed excepturi laborum qui inventore commodi et tenetur fuga est omnis officia. Ut quas corporis ut sint voluptatem id consequatur nisi et corporis quisquam et vitae voluptatem. Et delectus omnis et distinctio recusandae ut consequatur exercitationem. Ut ipsa porro At perspiciatis velit et inventore dolor vel consequatur incidunt eum praesentium obcaecati ad molestias soluta!
 Ea unde dolorem est repellendus maiores aut illo nesciunt aut doloremque soluta a saepe consequuntur At eaque internos! Ut assumenda autem nam expedita magni et quia eveniet qui animi iure. 33 magni impedit aut adipisci fuga quo quia error. Non blanditiis vero aut nihil magni cum maiores doloremque in libero laboriosam.
     </string>
+<!--    Names-->
+    <string name="home_name">Home</string>
+    <string name="ciudades_name">Instituto Ciudades del Futuro</string>
+    <string name="map_name">Mapa</string>
+    <string name="station_name">Estaciones</string>
+    <string name="favorite_name">Favoritos</string>
+    <string name="about_us_name">Nosotros</string>
+    <string name="station_list_name">Lista de Estaciones</string>
+    <string name="station_details_name">Detalles de Estacion</string>
+
+<!--    Drawer-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
 

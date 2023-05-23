@@ -1,22 +1,24 @@
 package ar.edu.ort.respirar.holders
 
 import android.view.View
-import android.widget.ImageView
+import android.widget.CheckBox
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.data.models.CustomEstation
-import ar.edu.ort.respirar.ui.fragments.StationListFragment
 
 class CustomViewHolder(view: View): RecyclerView.ViewHolder(view) {
-    val itemImage: ImageView = view.findViewById(R.id.card_image)
+    //val itemImage: ImageView = view.findViewById(R.id.card_image)
     val itemTitle: TextView = view.findViewById(R.id.card_title)
-    val itemDetails: TextView = view.findViewById(R.id.card_details)
+    val itemTemperature: TextView = view.findViewById(R.id.card_temperature)
+    val itemHumidity: TextView = view.findViewById(R.id.card_humidity)
+    var favoriteButton: CheckBox = itemView.findViewById(R.id.favoriteButton)
+
 
     fun render(card: CustomEstation){
-        itemImage.setImageDrawable(ContextCompat.getDrawable(this.itemView.context, card.image))
+        //itemImage.setImageDrawable(ContextCompat.getDrawable(this.itemView.context, card.image))
         itemTitle.text = card.titulo
-        itemDetails.text = StationListFragment.getDetails(card)
+        itemTemperature.text = card.temperatura.toString()
+        itemHumidity.text = card.humedad.toString()
     }
 }
