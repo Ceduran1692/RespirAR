@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/home_background"
-    tools:context=".ui.fragments.HomeFragment">
+    tools:context=".ui.fragments.HomeFragment"
+    android:id="@+id/home_view">
 
     <ImageView
         android:id="@+id/topView"
@@ -42,6 +43,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/mapButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -50,16 +52,16 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/outline_home_24"
+                    android:src="@drawable/map_regular"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="@string/map_name"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"/>
 
             </LinearLayout>
@@ -79,6 +81,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/stationsButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -87,17 +90,17 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/outline_home_24"
+                    android:src="@drawable/font_awesome_regular"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="@string/station_name"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"/>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -116,6 +119,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/favoritesButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -124,16 +128,16 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/outline_home_24"
+                    android:src="@drawable/heart_regular"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="@string/favorite_name"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"/>
 
             </LinearLayout>
@@ -153,6 +157,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/aboutUsButton"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -161,16 +166,16 @@
                 <ImageView
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/outline_home_24"
+                    android:src="@drawable/circle_question_regular"
                     android:layout_gravity="center_horizontal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Home"
+                    android:text="@string/about_us_name"
                     android:layout_gravity="center_horizontal"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold"/>
 
             </LinearLayout>

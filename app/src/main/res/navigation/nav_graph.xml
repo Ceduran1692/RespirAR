@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
 
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ar.edu.ort.respirar.ui.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_stationListFragment"
+            app:destination="@id/stationListFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_aboutUsFragment"
+            app:destination="@id/aboutUsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_stationFavoritesListFragment"
+            app:destination="@id/stationFavoritesListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="ar.edu.ort.respirar.ui.fragments.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+    <fragment
+        android:id="@+id/stationListFragment"
+        android:name="ar.edu.ort.respirar.ui.fragments.StationListFragment"
+        android:label="fragment_stations_list"
+        tools:layout="@layout/fragment_stations_list" />
+    <fragment
+        android:id="@+id/aboutUsFragment"
+        android:name="ar.edu.ort.respirar.ui.fragments.AboutUsFragment"
+        android:label="fragment_about_us"
+        tools:layout="@layout/fragment_about_us" />
+    <fragment
+        android:id="@+id/stationFavoritesListFragment"
+        android:name="ar.edu.ort.respirar.ui.fragments.StationFavoritesListFragment"
+        android:label="fragment_favorites_station_list"
+        tools:layout="@layout/fragment_favorites_station_list" />
 </navigation>

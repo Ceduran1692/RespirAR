@@ -10,9 +10,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.databinding.ActivityMainBinding
 import ar.edu.ort.respirar.ui.fragments.AboutUsFragment
+import ar.edu.ort.respirar.ui.fragments.HomeFragment
 import ar.edu.ort.respirar.ui.fragments.StationListFragment
 import ar.edu.ort.respirar.ui.fragments.MapsFragment
 import com.google.android.material.navigation.NavigationView
@@ -20,6 +23,8 @@ import com.google.android.material.navigation.NavigationView
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private lateinit var binding:ActivityMainBinding
+
+    private lateinit var navController: NavController
 
     private lateinit var drawer: DrawerLayout
     private lateinit var toogle: ActionBarDrawerToggle
@@ -30,40 +35,36 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //NAV CONTROLLER
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = navHostFragment.navController
+
         //NAVIGATION VIEW
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
 
         drawer = findViewById(R.id.drawerLayout)
-
         toogle = ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer.addDrawerListener(toogle)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeButtonEnabled(true)
 
-
         val navigationView: NavigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener(this)
 
-        replaceFragment(MapsFragment())
+        navController.navigate(R.id.homeFragment)
     }
 
-    private fun replaceFragment(fragment:Fragment){
-        val fragmentManager= supportFragmentManager
-        val fragmentTransaction= fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.main_frame_layout,fragment)
-        fragmentTransaction.commit()
-    }
 
     //FUNCIONES NAVIGATION
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.home -> replaceFragment(MapsFragment())
-            R.id.map -> replaceFragment(MapsFragment())
-            R.id.stations -> replaceFragment(StationListFragment())
-            R.id.favorite -> Toast.makeText(this,"Favoritos", Toast.LENGTH_SHORT).show()
-            R.id.about_us -> replaceFragment(AboutUsFragment())
+            R.id.home -> navController.navigate(R.id.homeFragment)
+            R.id.map -> navController.navigate(R.id.mapsFragment)
+            R.id.stations -> navController.navigate(R.id.stationListFragment)
+            R.id.favorite -> navController.navigate(R.id.stationFavoritesListFragment)
+            R.id.about_us -> navController.navigate(R.id.aboutUsFragment)
             R.id.settings -> Toast.makeText(this,"Configuracion", Toast.LENGTH_SHORT).show()
             R.id.out -> Toast.makeText(this,"Salir", Toast.LENGTH_SHORT).show()
         }
