@@ -21,7 +21,7 @@
             android:id="@+id/stationDetailsTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Estacion"
+            android:text="@string/station_name"
             android:textColor="@color/white"
             android:textSize="35sp"
             android:textStyle="bold" />
@@ -37,7 +37,7 @@
 
     <GridLayout
         android:id="@+id/gridLayoutStationDetails"
-        android:layout_width="370dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:columnCount="2"
@@ -51,9 +51,9 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            style="@style/translucentCard"
-            android:layout_marginTop="10dp">
+            app:shapeAppearanceOverlay="@style/translucentCard"
+            android:layout_marginTop="10dp"
+            app:cardElevation="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -66,9 +66,9 @@
                     android:id="@+id/temperatureDetailsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:text="Temperatura"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     />
@@ -76,7 +76,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
 
@@ -85,8 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_marginBottom="20dp"/>
+                    android:gravity="center"/>
 
             </LinearLayout>
 
@@ -100,9 +99,9 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            style="@style/translucentCard"
-            android:layout_marginTop="10dp">
+            app:shapeAppearanceOverlay="@style/translucentCard"
+            android:layout_marginTop="10dp"
+            app:cardElevation="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -115,9 +114,9 @@
                     android:id="@+id/humidityDetailsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:text="Humedad"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     />
@@ -125,7 +124,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
 
@@ -135,8 +134,7 @@
 
                     <ProgressBar
                         android:id="@+id/humidityCircularProgressBar"
-                        style="@style/CircularProgressBar"
-                        android:layout_width="120dp"
+                        style="@style/CircularHumidityProgressBar"                        android:layout_width="120dp"
                         android:layout_height="150dp"
                         android:layout_centerInParent="true"
                         android:max="100"
@@ -148,7 +146,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:textSize="40sp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/COLD"
                         android:text="25"
                         android:textStyle="bold"/>
 
@@ -167,9 +165,9 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            style="@style/translucentCard"
-            android:layout_marginTop="10dp">
+            app:shapeAppearanceOverlay="@style/translucentCard"
+            android:layout_marginTop="10dp"
+            app:cardElevation="20dp">
 
                 <LinearLayout
                 android:layout_width="match_parent"
@@ -182,9 +180,9 @@
                     android:id="@+id/reliabilityDetailsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:text="Fiabilidad"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     />
@@ -192,7 +190,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
 
@@ -202,7 +200,7 @@
 
                         <ProgressBar
                             android:id="@+id/reliabilityCircularProgressBar"
-                            style="@style/CircularProgressBar"
+                            style="@style/CircularReliabilityProgressBar"
                             android:layout_width="120dp"
                             android:layout_height="150dp"
                             android:layout_centerInParent="true"
@@ -215,7 +213,7 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:textSize="40sp"
-                            android:textColor="@color/white"
+                            android:textColor="@color/appbar_background_color"
                             android:text="25"
                             android:textStyle="bold"/>
 
@@ -234,9 +232,9 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            style="@style/translucentCard"
-            android:layout_marginTop="10dp">
+            app:shapeAppearanceOverlay="@style/translucentCard"
+            android:layout_marginTop="10dp"
+            app:cardElevation="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -249,9 +247,9 @@
                     android:id="@+id/precipitationsDetailsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="5dp"
                     android:text="Precipitaciones"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     />
@@ -259,7 +257,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
 
@@ -282,7 +280,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text="25"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="40sp"
                         android:textStyle="bold" />
 
@@ -301,10 +299,10 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            style="@style/translucentCard"
+            app:shapeAppearanceOverlay="@style/translucentCard"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            app:cardElevation="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -317,9 +315,9 @@
                     android:id="@+id/Property5DetailsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Temperatura"
-                    android:textColor="@color/white"
+                    android:layout_marginTop="5dp"
+                    android:text="PM 1"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     />
@@ -327,7 +325,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
 
@@ -350,7 +348,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:textSize="40sp"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:text="25"
                         android:textStyle="bold"/>
 
@@ -369,10 +367,11 @@
             android:layout_rowWeight="1"
             android:layout_columnWeight="1"
             android:layout_gravity="center"
-            app:cardCornerRadius="20dp"
-            style="@style/translucentCard"
+            android:elevation="20dp"
+            app:shapeAppearanceOverlay="@style/translucentCard"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            app:cardElevation="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -385,9 +384,9 @@
                     android:id="@+id/Property6DetailsTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Temperatura"
-                    android:textColor="@color/white"
+                    android:layout_marginTop="5dp"
+                    android:text="PM 10"
+                    android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     />
@@ -395,7 +394,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
 
@@ -418,7 +417,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:text="25"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="40sp"
                         android:textStyle="bold" />
 
