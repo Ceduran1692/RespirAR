@@ -27,7 +27,11 @@
         android:id="@+id/mapsFragment"
         android:name="ar.edu.ort.respirar.ui.fragments.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_stationDetailsFragment"
+            app:destination="@id/stationDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/stationListFragment"
         android:name="ar.edu.ort.respirar.ui.fragments.StationListFragment"
@@ -43,4 +47,8 @@
         android:name="ar.edu.ort.respirar.ui.fragments.StationFavoritesListFragment"
         android:label="fragment_favorites_station_list"
         tools:layout="@layout/fragment_favorites_station_list" />
+    <fragment
+        android:id="@+id/stationDetailsFragment"
+        android:name="ar.edu.ort.respirar.ui.fragments.StationDetailsFragment"
+        android:label="StationDetailsFragment" />
 </navigation>

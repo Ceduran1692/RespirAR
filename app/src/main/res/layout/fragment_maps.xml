@@ -5,9 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.MapsFragment">
 
+
     <org.osmdroid.views.MapView
         android:id="@+id/map_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+
+    </org.osmdroid.views.MapView>
 
 </RelativeLayout>

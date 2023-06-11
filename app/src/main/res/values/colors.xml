@@ -15,4 +15,11 @@
     <color name="navbar_background_color">#2F6329</color>
     <color name="appbar_background_color">#00965A</color>
     <color name="lg_text_color">#40904D</color>
+    
+<!--    TEMPERATURA-->
+    <color name="COLD">#7692e4</color>
+    <color name="NEUTRAL">#6edf49</color>
+    <color name="WARM">#f99417</color>
+    <color name="HOT">#e67676</color>
+
 </resources>

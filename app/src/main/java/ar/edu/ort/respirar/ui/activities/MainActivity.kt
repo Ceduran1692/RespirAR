@@ -1,6 +1,5 @@
 package ar.edu.ort.respirar.ui.activities
 
-
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,15 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.databinding.ActivityMainBinding
-import ar.edu.ort.respirar.ui.fragments.AboutUsFragment
-import ar.edu.ort.respirar.ui.fragments.HomeFragment
-import ar.edu.ort.respirar.ui.fragments.StationListFragment
-import ar.edu.ort.respirar.ui.fragments.MapsFragment
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
@@ -42,6 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         //NAVIGATION VIEW
         val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_main)
         setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
 
         drawer = findViewById(R.id.drawerLayout)
         toogle = ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
