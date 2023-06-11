@@ -1,20 +1,23 @@
 package ar.edu.ort.respirar.adapters
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.models.CustomEstation
+import ar.edu.ort.respirar.data.models.CustomStation
 import ar.edu.ort.respirar.holders.CustomViewHolder
 import ar.edu.ort.respirar.ui.fragments.StationListFragment
+import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 
 class CustomAdapter(
-        private val currentFragmentType: String,
-        private val stationPreferences: StationListFragment.StationPreferences
-    ) : RecyclerView.Adapter<CustomViewHolder>() {
+    private val viewModel: StationViewModel,
+    private val stationPreferences: StationListFragment.StationPreferences
+) : RecyclerView.Adapter<CustomViewHolder>() {
 
-    private var data: MutableList<CustomEstation>? = ArrayList<CustomEstation>()
-
-
+    private var data: MutableList<CustomStation>? = ArrayList()
+    private lateinit var navController : NavController
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_station_layout, parent, false)
@@ -32,16 +35,42 @@ class CustomAdapter(
             holder.favoriteButton.setOnCheckedChangeListener { _, isChecked ->
                 stationPreferences.setStationFavorite(station.stationId, isChecked)
             }
+
+            holder.setItemClickListener { clickedStation ->
+                val bundle = Bundle().apply {
+                    putString("stationId", clickedStation?.stationId)
+                }
+
+                navController.navigate(R.id.stationDetailsFragment, bundle)
+            }
+
+            val carouselAdapter = StationCarouselAdapter(viewModel, station.stationId, holder.viewPager)
+            carouselAdapter.updateSensores(viewModel.getStationSensors(station.stationId))
+            holder.viewPager.adapter = carouselAdapter
+            Log.d("ADAPTER EN CUSTOM", "ITEM COUNT: $carouselAdapter.itemCount")
+            if (carouselAdapter.itemCount > 1) {
+                carouselAdapter.startCarousel()
+            }
         }
+
     }
 
     override fun getItemCount(): Int {
         return data!!.size
     }
 
-    fun setData(cards: Array<CustomEstation>) {
+    fun setData(cards: Array<CustomStation>) {
         data = cards.toMutableList()
         notifyDataSetChanged()
     }
+
+    fun initNavController(navController: NavController) {
+        this.navController = navController
+    }
+    override fun onViewDetachedFromWindow(holder: CustomViewHolder) {
+        val carouselAdapter = holder.viewPager.adapter as? StationCarouselAdapter
+        carouselAdapter?.stopCarousel()
+    }
+
 
 }

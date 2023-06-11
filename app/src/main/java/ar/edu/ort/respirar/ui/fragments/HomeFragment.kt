@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ar.edu.ort.respirar.R
+import com.google.android.material.card.MaterialCardView
 
 class HomeFragment : Fragment() {
 
@@ -22,10 +23,10 @@ class HomeFragment : Fragment() {
         (requireActivity() as AppCompatActivity).supportActionBar?.hide()
 
 
-        val buttonMap = view.findViewById<LinearLayout>(R.id.mapButton)
-        val buttonStations = view.findViewById<LinearLayout>(R.id.stationsButton)
-        val buttonFavorites = view.findViewById<LinearLayout>(R.id.favoritesButton)
-        val buttonAboutUs = view.findViewById<LinearLayout>(R.id.aboutUsButton)
+        val buttonMap = view.findViewById<MaterialCardView>(R.id.mapButton)
+        val buttonStations = view.findViewById<MaterialCardView>(R.id.stationsButton)
+        val buttonFavorites = view.findViewById<MaterialCardView>(R.id.favoritesButton)
+        val buttonAboutUs = view.findViewById<MaterialCardView>(R.id.aboutUsButton)
 
         buttonMap.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_mapsFragment)
