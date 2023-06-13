@@ -132,14 +132,14 @@ class MapsFragment : Fragment()  {
             }
         }
     }
-    fun addMarkersOnMap(estaciones: Array<CustomStation>) {
+    fun addMarkersOnMap(estaciones: MutableList<CustomStation>) {
 
         for (estacion in estaciones) {
-            val latitude = estacion.geoPoint.latitude
-            val longitude = estacion.geoPoint.longitude
+            val latitude = estacion.geoPoint?.latitude
+            val longitude = estacion.geoPoint?.longitude
 
             val marker = Marker(mapView)
-            marker.position = GeoPoint(latitude, longitude)
+            marker.position = GeoPoint(latitude!!, longitude!!)
             marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             marker.title = estacion.titulo
             //marker.snippet = StationListFragment.getDetails(estacion)

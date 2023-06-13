@@ -1,5 +1,6 @@
 package ar.edu.ort.respirar.ui.viewmodels
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +13,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.data.models.CustomStation
+import ar.edu.ort.respirar.domain.usecases.GetAllStationUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import org.osmdroid.util.GeoPoint
+import javax.inject.Inject
 
 
-class StationViewModel : ViewModel(){
+@HiltViewModel
+class StationViewModel @Inject constructor(
+    private val getAllStationUseCase: GetAllStationUseCase
+) : ViewModel(){
 
-    val estaciones = arrayOf(
+    val isLoading= MutableLiveData<Boolean>()
+    val estaciones = mutableListOf(
         CustomStation(
             "1",
             GeoPoint(-34.670267, -58.370969),
@@ -66,15 +74,24 @@ class StationViewModel : ViewModel(){
         )
     )
 
-    val stationList= MutableLiveData<Array<CustomStation>>()
+    val stationList= MutableLiveData<MutableList<CustomStation>>()
 
     fun getStations(){
+        Log.i("StationViewModel", "getAllCars() - init")
+        isLoading.postValue(true)
         viewModelScope.launch {
-
-            if(estaciones.isNotEmpty()) {
-                stationList.postValue(estaciones)
+            var result= getAllStationUseCase()
+            Log.i("CarViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
+            if(result.isNotEmpty()) {
+                stationList.postValue(result)
+            }else{
+                if(estaciones.isNotEmpty()) {
+                    stationList.postValue(estaciones)
+                }
             }
+            isLoading.postValue(false)
         }
+        Log.i("CarViewModel", "getAllCars() - out")
 
     }
 

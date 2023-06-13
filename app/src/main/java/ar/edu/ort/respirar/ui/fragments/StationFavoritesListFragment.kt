@@ -34,14 +34,14 @@ class StationFavoritesListFragment : Fragment() {
         recyclerView.adapter = adapter
         adapter.initNavController(findNavController())
         filterFavoriteStations()
-        adapter.setData(favoriteStations.toTypedArray())
+        adapter.setData(favoriteStations.toMutableList())
 
         return view
     }
 
     private fun filterFavoriteStations() {
         favoriteStations = stationViewModel.estaciones.filter { station ->
-            StationListFragment.StationPreferences(requireContext()).isStationFavorite(station.stationId)
+            StationListFragment.StationPreferences(requireContext()).isStationFavorite(station.stationId!!)
         }
     }
 }

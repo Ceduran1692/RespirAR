@@ -44,7 +44,7 @@ class CustomInfoWindow(
 //        }
         viewPager2 = mView.findViewById(R.id.viewPager2MapInfoWindow)
 
-        val carouselAdapter = StationCarouselAdapter(viewModel, estacion.stationId, viewPager2)
+        val carouselAdapter = StationCarouselAdapter(viewModel, estacion.stationId!!, viewPager2)
         carouselAdapter.updateSensores(viewModel.getStationSensors(estacion.stationId))
         viewPager2.adapter = carouselAdapter
         if (carouselAdapter.itemCount > 1) {

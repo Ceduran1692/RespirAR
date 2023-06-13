@@ -29,7 +29,7 @@ class CustomAdapter(
         if (station != null) {
             holder.render(station)
 
-            val isFavorite = stationPreferences.isStationFavorite(station.stationId)
+            val isFavorite = stationPreferences.isStationFavorite(station.stationId!!)
 
             holder.favoriteButton.isChecked = isFavorite
             holder.favoriteButton.setOnCheckedChangeListener { _, isChecked ->
@@ -59,7 +59,7 @@ class CustomAdapter(
         return data!!.size
     }
 
-    fun setData(cards: Array<CustomStation>) {
+    fun setData(cards: MutableList<CustomStation>) {
         data = cards.toMutableList()
         notifyDataSetChanged()
     }
