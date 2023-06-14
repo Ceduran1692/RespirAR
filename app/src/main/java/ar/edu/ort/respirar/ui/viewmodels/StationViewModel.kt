@@ -101,7 +101,7 @@ class StationViewModel @Inject constructor(
 
     fun getStationSensors(stationId: String): MutableMap<String, Double?> {
         val sensors = mutableMapOf<String, Double?>()
-        val station = estaciones.find { it.stationId == stationId }
+        val station = stationList.value?.find { it.stationId == stationId }
         if (station != null) {
             sensors["Temperatura"] = station.temperatura
             sensors["Humedad"] = station.humedad
