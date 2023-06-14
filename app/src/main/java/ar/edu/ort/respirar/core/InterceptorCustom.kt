@@ -10,8 +10,8 @@ object InterceptorCustom: Interceptor {
         var request= chain.request()
 
         request= request.newBuilder()
-            .header("Accept","application/json")
-            .header("Content-Type","application/json")
+            //.header("Accept","application/json")
+            //.header("Content-Type","application/json")
             .build()
 
         Log.i("InterceptorCustom", "intercept(Chain) -in")

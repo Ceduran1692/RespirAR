@@ -7,7 +7,7 @@ import retrofit2.http.GET
 
 interface StationServiceInterface {
 
-    @GET("/v2/entities/")
+    @GET("/v2/entities")
     suspend fun getAllStation():Response<List<StationDto>>
 
 }

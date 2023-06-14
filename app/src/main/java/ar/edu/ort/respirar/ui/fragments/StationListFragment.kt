@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,12 +21,10 @@ class StationListFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CustomAdapter
-    private lateinit var stationViewModel: StationViewModel
+    private val stationViewModel: StationViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_stations_list, container, false)
-
-        stationViewModel = ViewModelProvider(requireActivity()).get(StationViewModel::class.java)
 
         recyclerView = view.findViewById<RecyclerView>(R.id.stations_recycler)
         adapter = CustomAdapter(stationViewModel, StationPreferences(requireContext()))
@@ -36,8 +35,11 @@ class StationListFragment : Fragment() {
         val navController = findNavController()
         adapter.initNavController(navController)
 
-        adapter.setData(stationViewModel.estaciones)
+        stationViewModel.stationList.observe(viewLifecycleOwner) { stations ->
+            adapter.setData(stations)
+        }
 
+        stationViewModel.getStations()
         return view
     }
 

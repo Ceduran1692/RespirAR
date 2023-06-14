@@ -13,7 +13,9 @@ import androidx.navigation.fragment.NavHostFragment
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.databinding.ActivityMainBinding
 import com.google.android.material.navigation.NavigationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
 
     private lateinit var binding:ActivityMainBinding

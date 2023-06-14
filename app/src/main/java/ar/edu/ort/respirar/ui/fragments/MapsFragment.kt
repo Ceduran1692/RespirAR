@@ -13,6 +13,8 @@ import android.widget.ImageView
 import android.widget.SearchView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -28,7 +30,7 @@ class MapsFragment : Fragment()  {
 
     private lateinit var mapView: MapView
     private lateinit var overlayManager: OverlayManager
-    private lateinit var stationViewModel: StationViewModel
+    private val stationViewModel: StationViewModel by activityViewModels()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,10 +68,15 @@ class MapsFragment : Fragment()  {
         mapView.controller.setCenter(buenosAires)
 
         //Estaciones prueba
-        stationViewModel = ViewModelProvider(requireActivity()).get(StationViewModel::class.java)
-        val estaciones = stationViewModel.estaciones
-        addMarkersOnMap(estaciones)
+        //stationViewModel = ViewModelProvider(requireActivity()).get(StationViewModel::class.java)
 
+        //val estaciones = stationViewModel.stationList.
+        stationViewModel.stationList.observe(viewLifecycleOwner) { stations ->
+            addMarkersOnMap(stations)
+
+        }
+
+        stationViewModel.getStations()
 //        mapView.setOnTouchListener { _, event ->
 //            if (event.action == MotionEvent.ACTION_DOWN) {
 //                closeInfoWindows()
