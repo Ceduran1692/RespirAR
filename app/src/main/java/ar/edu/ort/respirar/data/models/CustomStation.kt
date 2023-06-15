@@ -11,6 +11,7 @@ data class CustomStation(
     val temperatura: Double?,
     val humedad: Double?,
     val reliability: Double?,
+    val precipitations: Double?,
     val image: Int= 0,
     var isFavorite: Boolean? = false
     )
@@ -22,6 +23,7 @@ fun StationDto.toDomain()= CustomStation(
     temperatura = temperature?.value,
     humedad = relativeHumidity?.value,
     reliability= reliability?.value,
+    precipitations= precipitation?.value,
     image = setImage()
 )
 

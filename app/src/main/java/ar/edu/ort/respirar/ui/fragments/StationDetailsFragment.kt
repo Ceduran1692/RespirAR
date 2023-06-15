@@ -9,16 +9,23 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StationDetailsFragment: Fragment(){
+
+    private val stationViewModel: StationViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_station_details, container, false)
 
         val stationId = arguments?.getString("stationId")
+
         val titulo: TextView = view.findViewById(R.id.stationDetailsTitle)
         val temperatura: LinearLayout = view.findViewById(R.id.stationDetailsTemperature)
         val humedad: TextView = view.findViewById(R.id.humidityValue)
@@ -38,15 +45,12 @@ class StationDetailsFragment: Fragment(){
         property5ProgressBar.max = 100
         property6ProgressBar.max = 100
 
-        val viewModel = ViewModelProvider(requireActivity()).get(StationViewModel::class.java)
-
-        val station = viewModel.getStationById(stationId)
+        val station = stationViewModel.getStationById(stationId)
 
 
         if (station != null) {
             titulo.text = station.titulo
-
-            viewModel.getTemperatureDetails(station.temperatura, temperatura, false)
+            stationViewModel.getTemperatureDetails(station.temperatura, temperatura, false)
             humedad.text = station.humedad.toString()
             fiabilidad.text = station.reliability.toString()
             precipitaciones.text = 90.toString()

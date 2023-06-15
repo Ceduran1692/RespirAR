@@ -50,6 +50,8 @@ class CustomAdapter(
             Log.d("ADAPTER EN CUSTOM", "ITEM COUNT: $carouselAdapter.itemCount")
             if (carouselAdapter.itemCount > 1) {
                 carouselAdapter.startCarousel()
+            } else {
+                carouselAdapter.stopCarousel()
             }
         }
 
@@ -60,6 +62,7 @@ class CustomAdapter(
     }
 
     fun setData(cards: MutableList<CustomStation>) {
+        data?.clear()
         data = cards.toMutableList()
         notifyDataSetChanged()
     }

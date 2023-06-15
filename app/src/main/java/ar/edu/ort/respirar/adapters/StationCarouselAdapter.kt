@@ -2,12 +2,10 @@ package ar.edu.ort.respirar.adapters
 
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import ar.edu.ort.respirar.R
@@ -32,7 +30,6 @@ class StationCarouselAdapter(private val viewModel: StationViewModel,
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val detailsContainer: LinearLayout = itemView.findViewById(R.id.stationDetailsContainer)
         init {
-            // Deshabilitar la interacción táctil en el ViewPager2
             viewPager2.isUserInputEnabled = false
         }
 
@@ -55,7 +52,7 @@ class StationCarouselAdapter(private val viewModel: StationViewModel,
         }
 
         if (sensores.size > 1) {
-            viewPager2.post(runnable)
+            holder.itemView.post(runnable)
         }
     }
 
@@ -64,6 +61,7 @@ class StationCarouselAdapter(private val viewModel: StationViewModel,
     }
 
     fun updateSensores(sensores: MutableMap<String, Double?>) {
+        this.sensores.clear()
         this.sensores = sensores
         notifyDataSetChanged()
     }
@@ -86,15 +84,21 @@ class StationCarouselAdapter(private val viewModel: StationViewModel,
         if (key == "Fiabilidad") {
             viewModel.getReliabilityDetails(value,parent, true)
         }
+
+        if (key == "Precipitaciones"){
+            viewModel.getPrecipitationsDetails(value, parent, true)
+        }
     }
 
 
     fun startCarousel() {
-        viewPager2.postDelayed(runnable, 3000L)
+        stopCarousel()
+        handler.postDelayed(runnable, 3000L)
     }
 
+
     fun stopCarousel() {
-        viewPager2.removeCallbacks(runnable)
+        handler.removeCallbacks(runnable)
     }
 
 

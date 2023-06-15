@@ -12,7 +12,7 @@
         android:id="@+id/topView"
         android:layout_width="wrap_content"
         android:layout_height="150dp"
-        android:src="@drawable/ciudades"
+        android:src="@drawable/respirar"
         android:layout_marginTop="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"

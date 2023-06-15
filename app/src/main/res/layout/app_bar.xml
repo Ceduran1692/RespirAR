@@ -10,8 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        >
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_main"
@@ -26,11 +25,11 @@
 
             <ImageView
                 android:id="@+id/toolbar_center"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|center"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/ciudadesdelfuturo_logo_2"/>
+                android:src="@drawable/respirar"/>
 
             <ImageButton
                 android:id="@+id/search_button"

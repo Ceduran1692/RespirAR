@@ -18,7 +18,7 @@ import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 
 class StationFavoritesListFragment : Fragment() {
 
-    private var favoriteStations: List<CustomStation> = emptyList()
+    private var favoriteStations: MutableList<CustomStation> = mutableListOf()
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CustomAdapter
     private val stationViewModel: StationViewModel by activityViewModels()
@@ -32,17 +32,23 @@ class StationFavoritesListFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter
         adapter.initNavController(findNavController())
-        filterFavoriteStations()
-        adapter.setData(favoriteStations.toMutableList())
+
+        stationViewModel.stationList.observe(viewLifecycleOwner) { stations ->
+            val filteredStations  = stations.filter { station ->
+                StationListFragment.StationPreferences(requireContext()).isStationFavorite(station.stationId!!)
+            }
+            favoriteStations = filteredStations.toMutableList()
+            adapter.setData(favoriteStations)
+        }
 
         return view
     }
 
-    private fun filterFavoriteStations() {
-        favoriteStations = stationViewModel.estaciones.filter { station ->
-            StationListFragment.StationPreferences(requireContext()).isStationFavorite(station.stationId!!)
-        }
-    }
+//    private fun filterFavoriteStations() {
+//        favoriteStations = stationViewModel.stationList.filter { station ->
+//            StationListFragment.StationPreferences(requireContext()).isStationFavorite(station.stationId!!)
+//        }
+//    }
 }
 
 

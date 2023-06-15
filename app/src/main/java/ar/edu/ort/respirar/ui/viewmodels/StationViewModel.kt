@@ -16,7 +16,6 @@ import ar.edu.ort.respirar.data.models.CustomStation
 import ar.edu.ort.respirar.domain.usecases.GetAllStationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.osmdroid.util.GeoPoint
 import javax.inject.Inject
 
 
@@ -26,53 +25,53 @@ class StationViewModel @Inject constructor(
 ) : ViewModel(){
 
     val isLoading= MutableLiveData<Boolean>()
-    val estaciones = mutableListOf(
-        CustomStation(
-            "1",
-            GeoPoint(-34.670267, -58.370969),
-            "Estacion 1",
-            25.0,
-            60.3,
-            70.2,
-            R.drawable.baseline_location_on_red_24
-        ),
-        CustomStation(
-            "2",
-            GeoPoint(-34.545278, -58.449722),
-            "Estacion 2",
-            18.3,
-            20.3,
-            50.6,
-            R.drawable.baseline_location_on_red_24
-        ),
-        CustomStation(
-            "3",
-            GeoPoint(-34.63565, -58.36465),
-            "Estacion 3",
-            35.7,
-            50.7,
-            30.4,
-            R.drawable.baseline_location_on_red_24
-        ),
-        CustomStation(
-            "4",
-            GeoPoint(-34.652064, -58.440119),
-            "Estacion 4",
-            12.1,
-            60.2,
-            90.2,
-            R.drawable.baseline_location_on_red_24
-        ),
-        CustomStation(
-            "5",
-            GeoPoint(-34.6675, -58.368611),
-            "Estacion 5",
-            6.7,
-            60.3,
-            8.1,
-            R.drawable.baseline_location_on_red_24
-        )
-    )
+//    val estaciones = mutableListOf(
+//        CustomStation(
+//            "1",
+//            GeoPoint(-34.670267, -58.370969),
+//            "Estacion 1",
+//            25.0,
+//            60.3,
+//            70.2,
+//            R.drawable.baseline_location_on_red_24
+//        ),
+//        CustomStation(
+//            "2",
+//            GeoPoint(-34.545278, -58.449722),
+//            "Estacion 2",
+//            18.3,
+//            20.3,
+//            50.6,
+//            R.drawable.baseline_location_on_red_24
+//        ),
+//        CustomStation(
+//            "3",
+//            GeoPoint(-34.63565, -58.36465),
+//            "Estacion 3",
+//            35.7,
+//            50.7,
+//            30.4,
+//            R.drawable.baseline_location_on_red_24
+//        ),
+//        CustomStation(
+//            "4",
+//            GeoPoint(-34.652064, -58.440119),
+//            "Estacion 4",
+//            12.1,
+//            60.2,
+//            90.2,
+//            R.drawable.baseline_location_on_red_24
+//        ),
+//        CustomStation(
+//            "5",
+//            GeoPoint(-34.6675, -58.368611),
+//            "Estacion 5",
+//            6.7,
+//            60.3,
+//            8.1,
+//            R.drawable.baseline_location_on_red_24
+//        )
+//    )
 
     val stationList= MutableLiveData<MutableList<CustomStation>>()
 
@@ -84,10 +83,6 @@ class StationViewModel @Inject constructor(
             Log.i("CarViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
             if(result.isNotEmpty()) {
                 stationList.postValue(result)
-            }else{
-                if(estaciones.isNotEmpty()) {
-                    stationList.postValue(estaciones)
-                }
             }
             isLoading.postValue(false)
         }
@@ -96,7 +91,7 @@ class StationViewModel @Inject constructor(
     }
 
     fun getStationById(id: String?): CustomStation? {
-        return estaciones.find { it.stationId == id }
+        return stationList.value?.find { it.stationId == id }
     }
 
     fun getStationSensors(stationId: String): MutableMap<String, Double?> {
@@ -106,6 +101,7 @@ class StationViewModel @Inject constructor(
             sensors["Temperatura"] = station.temperatura
             sensors["Humedad"] = station.humedad
             sensors["Fiabilidad"] = station.reliability
+            sensors["Precipitaciones"] = station.precipitations
         }
         return sensors
     }
@@ -114,25 +110,30 @@ class StationViewModel @Inject constructor(
         val temperatureView = LayoutInflater.from(parent.context).inflate(R.layout.details_temperature, parent, false)
         val temperatureTextView = temperatureView.findViewById<TextView>(R.id.details_temperature_value)
         val temperatureIconView = temperatureView.findViewById<ImageView>(R.id.details_temperature_icon)
-        temperatureTextView.text = value.toString()
+        val temperatureCelsiusView = temperatureView.findViewById<TextView>(R.id.details_temperature_celsius)
+        temperatureTextView.text = value?.toInt().toString()
         when {
             value != null -> {
                 when {
                     value < 10 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.COLD))
+                        temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
                     }
                     value >= 10 && value < 20 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
+                        temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
                     }
                     value >= 20 && value < 30 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.WARM))
+                        temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
                     }
                     value >= 30 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.HOT))
+                        temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
                     }
                 }
             }
@@ -146,7 +147,6 @@ class StationViewModel @Inject constructor(
 
         parent.addView(temperatureView)
     }
-
     fun getHumidityDetails(value: Double?,parent: ViewGroup, title: Boolean){
         val humidityView = LayoutInflater.from(parent.context).inflate(R.layout.details_humidity, parent, false)
         val humidityTextView = humidityView.findViewById<TextView>(R.id.details_humidity_value)
@@ -168,11 +168,12 @@ class StationViewModel @Inject constructor(
     fun getReliabilityDetails(value: Double?, parent: ViewGroup, title: Boolean){
         val reliabilityView = LayoutInflater.from(parent.context).inflate(R.layout.details_reliability, parent, false)
         val reliabilityTextView = reliabilityView.findViewById<TextView>(R.id.details_reliability_value)
-        reliabilityTextView.text = value.toString() + " %"
+        val valorPorcentual = value!! * 100
+        reliabilityTextView.text = valorPorcentual.toString() + " %"
 
         val humidityProgressBar: ProgressBar = reliabilityView.findViewById(R.id.reliability_circular_ProgressBar)
         humidityProgressBar.max = 100
-        humidityProgressBar.progress = value!!.toInt()
+        humidityProgressBar.progress = valorPorcentual.toInt()
 
         if(!title){
             val reliabilityTitle = reliabilityView.findViewById<TextView>(R.id.details_reliabilityTitle)
@@ -180,6 +181,19 @@ class StationViewModel @Inject constructor(
         }
 
         parent.addView(reliabilityView)
+    }
+
+    fun getPrecipitationsDetails(value: Double?, parent: ViewGroup, title: Boolean){
+        val precipitationsView = LayoutInflater.from(parent.context).inflate(R.layout.details_precipitations, parent, false)
+        val precipitationsTextView = precipitationsView.findViewById<TextView>(R.id.details_precipitations_value)
+        precipitationsTextView.text = value.toString()
+
+        if(!title){
+            val precipitationsTitle = precipitationsView.findViewById<TextView>(R.id.details_precipitationsTitle)
+            precipitationsTitle.visibility = View.GONE
+        }
+
+        parent.addView(precipitationsView)
     }
 
 }
