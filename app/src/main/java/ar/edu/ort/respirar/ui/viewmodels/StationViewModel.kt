@@ -1,5 +1,6 @@
 package ar.edu.ort.respirar.ui.viewmodels
 
+import android.animation.ObjectAnimator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -150,16 +151,18 @@ class StationViewModel @Inject constructor(
     fun getHumidityDetails(value: Double?,parent: ViewGroup, title: Boolean){
         val humidityView = LayoutInflater.from(parent.context).inflate(R.layout.details_humidity, parent, false)
         val humidityTextView = humidityView.findViewById<TextView>(R.id.details_humidity_value)
-        humidityTextView.text = value.toString() + " %"
+        val valorPorcentual = value!! * 100
+        humidityTextView.text = valorPorcentual.toString() + " %"
 
         val humidityProgressBar: ProgressBar = humidityView.findViewById(R.id.humidity_circular_ProgressBar)
         humidityProgressBar.max = 100
-        humidityProgressBar.progress = value!!.toInt()
+        humidityProgressBar.progress = valorPorcentual.toInt()
 
 
         if(!title){
             val humidityTitle = humidityView.findViewById<TextView>(R.id.details_humidityTitle)
             humidityTitle.visibility = View.GONE
+            animateCircularProgressBar(humidityProgressBar, valorPorcentual)
         }
 
         parent.addView(humidityView)
@@ -171,13 +174,14 @@ class StationViewModel @Inject constructor(
         val valorPorcentual = value!! * 100
         reliabilityTextView.text = valorPorcentual.toString() + " %"
 
-        val humidityProgressBar: ProgressBar = reliabilityView.findViewById(R.id.reliability_circular_ProgressBar)
-        humidityProgressBar.max = 100
-        humidityProgressBar.progress = valorPorcentual.toInt()
+        val reliabilityProgressBar: ProgressBar = reliabilityView.findViewById(R.id.reliability_circular_ProgressBar)
+        reliabilityProgressBar.max = 100
+        reliabilityProgressBar.progress = valorPorcentual.toInt()
 
         if(!title){
             val reliabilityTitle = reliabilityView.findViewById<TextView>(R.id.details_reliabilityTitle)
             reliabilityTitle.visibility = View.GONE
+            animateCircularProgressBar(reliabilityProgressBar, valorPorcentual)
         }
 
         parent.addView(reliabilityView)
@@ -195,5 +199,49 @@ class StationViewModel @Inject constructor(
 
         parent.addView(precipitationsView)
     }
+
+    fun getPm1Details(value: Double?, parent: ViewGroup, title: Boolean){
+        val pm1View = LayoutInflater.from(parent.context).inflate(R.layout.details_pm1, parent, false)
+        val pm1TextView = pm1View.findViewById<TextView>(R.id.details_pm1_value)
+        pm1TextView.text = value.toString()
+
+        val pm1ProgressBar: ProgressBar = pm1View.findViewById(R.id.pm1_circular_ProgressBar)
+        pm1ProgressBar.max = 100
+        pm1ProgressBar.progress = value!!.toInt()
+
+        if(!title){
+            val pm1Title = pm1View.findViewById<TextView>(R.id.details_pm1Title)
+            pm1Title.visibility = View.GONE
+        }
+
+        parent.addView(pm1View)
+    }
+
+    fun getPm10Details(value: Double?, parent: ViewGroup, title: Boolean){
+        val pm10View = LayoutInflater.from(parent.context).inflate(R.layout.details_pm1, parent, false)
+        val pm10TextView = pm10View.findViewById<TextView>(R.id.details_pm1_value)
+        pm10TextView.text = value.toString()
+
+
+        val pm10ProgressBar: ProgressBar = pm10View.findViewById(R.id.pm1_circular_ProgressBar)
+        pm10ProgressBar.max = 100
+        pm10ProgressBar.progress = value!!.toInt()
+
+        if(!title){
+            val pm10Title = pm10View.findViewById<TextView>(R.id.details_pm1Title)
+            pm10Title.visibility = View.GONE
+        }
+
+        parent.addView(pm10View)
+    }
+
+    private fun animateCircularProgressBar(progressBar: ProgressBar, progress: Double?) {
+        progressBar.progress = 0
+
+        val animator = ObjectAnimator.ofInt(progressBar, "progress", 0, progress!!.toInt())
+        animator.duration = 700
+        animator.start()
+    }
+
 
 }

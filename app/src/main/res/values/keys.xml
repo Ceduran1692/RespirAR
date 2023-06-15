@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="orion_url">http://192.168.1.37:1026</string>
+    <string name="orion_url">http://192.168.0.10:1026</string>
 </resources>
