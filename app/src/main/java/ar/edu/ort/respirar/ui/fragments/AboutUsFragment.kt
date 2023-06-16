@@ -6,10 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.AutoTransition
+import androidx.transition.TransitionManager
 import ar.edu.ort.respirar.adapters.ItemsAboutUsAdapter
 import ar.edu.ort.respirar.databinding.FragmentAboutUsBinding
 import ar.edu.ort.respirar.data.dummie.DummieData
+import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.card.MaterialCardView
 
 
 class AboutUsFragment : Fragment() {
@@ -36,11 +44,11 @@ class AboutUsFragment : Fragment() {
         Log.i("about us fragment", "on create view")
         _binding = FragmentAboutUsBinding.inflate(inflater, container, false)
         val view = binding.root
-        //initComponentsDummy()
-        val linearLayoutManager= LinearLayoutManager(context)
+        initComponents()
+        //val linearLayoutManager= LinearLayoutManager(context)
 
-        binding.rvItemsAboutUs.adapter= ItemsAboutUsAdapter(itemsList)
-        binding.rvItemsAboutUs.layoutManager= linearLayoutManager
+        /*binding.rvItemsAboutUs.adapter= ItemsAboutUsAdapter(itemsList)
+        binding.rvItemsAboutUs.layoutManager= linearLayoutManager*/
         return view
     }
 
@@ -65,40 +73,39 @@ class AboutUsFragment : Fragment() {
             }
     }
 
-    private fun initComponentsDummy(){
+    private fun initComponents(){
 
-        val linearLayoutManager= LinearLayoutManager(context)
-
-        binding.rvItemsAboutUs.adapter= ItemsAboutUsAdapter(itemsList)
-        binding.rvItemsAboutUs.layoutManager= linearLayoutManager
-
-
-    /*
-        setCardViewListener(binding.cardAboutUs,binding.aboutUsTextDescription,null,binding.icInfoAboutUs,binding.animInfoAboutUs)
+        setCardViewListener(binding.cardAboutUs,binding.aboutUsTextDescription,binding.imgInfoAboutUs,binding.icInfoAboutUs,null)
         setCardViewListener(binding.cardFyware,binding.TextDescriptionFyware,binding.imgInfoFyware,binding.icInfoFyware,null)
         setCardViewListener(binding.cardCiudadesDelFuturo,binding.TextDescriptionCiudadesDelFuturo,binding.imgInfoCiudadesDelFuturo,binding.icInfoCiudadesDelFuturo,null)
 
-        binding.cardAboutUs.setOnClickListener {
-           if(binding.aboutUsTextDescription.visibility == View.GONE) {
-               Log.i("cardPress","expando")
-               TransitionManager.beginDelayedTransition(binding.cardAboutUs, AutoTransition())
-               binding.icInfoAboutUs.setVisibility(View.GONE)
-               binding.animInfoAboutUs.setVisibility(View.VISIBLE)
-               binding.aboutUsTextDescription.setVisibility(View.VISIBLE)
-           }else{
-               Log.i("cardPress","contraigo")
-               TransitionManager.beginDelayedTransition(binding.cardAboutUs, AutoTransition())
-               binding.icInfoAboutUs.setVisibility(View.VISIBLE)
-               binding.animInfoAboutUs.setVisibility(View.GONE)
-               binding.aboutUsTextDescription.setVisibility(View.GONE)
-           }
-        }*/
+        /* val linearLayoutManager= LinearLayoutManager(context)
+
+         binding.rvItemsAboutUs.adapter= ItemsAboutUsAdapter(itemsList)
+         binding.rvItemsAboutUs.layoutManager= linearLayoutManager
+
+
+         binding.cardAboutUs.setOnClickListener {
+            if(binding.aboutUsTextDescription.visibility == View.GONE) {
+                Log.i("cardPress","expando")
+                TransitionManager.beginDelayedTransition(binding.cardAboutUs, AutoTransition())
+                binding.icInfoAboutUs.setVisibility(View.GONE)
+                binding.animInfoAboutUs.setVisibility(View.VISIBLE)
+                binding.aboutUsTextDescription.setVisibility(View.VISIBLE)
+            }else{
+                Log.i("cardPress","contraigo")
+                TransitionManager.beginDelayedTransition(binding.cardAboutUs, AutoTransition())
+                binding.icInfoAboutUs.setVisibility(View.VISIBLE)
+                binding.animInfoAboutUs.setVisibility(View.GONE)
+                binding.aboutUsTextDescription.setVisibility(View.GONE)
+            }
+         }*/
     }
 
 
 
-/*
-    private fun setCardViewListener(card:MaterialCardView,textDescription:TextView,imgViewExpand:ImageView?,imgViewContract:ImageView,anim:LottieAnimationView?){
+
+    private fun setCardViewListener(card: CardView, textDescription: LinearLayout, imgViewExpand: ImageView?, imgViewContract:ImageView, anim: LottieAnimationView?){
         card.setOnClickListener {
             if(imgViewContract.visibility == View.VISIBLE) {
                 Log.i("cardPress","expando")
@@ -117,6 +124,6 @@ class AboutUsFragment : Fragment() {
             }
         }
     }
-*/
+
 
 }
