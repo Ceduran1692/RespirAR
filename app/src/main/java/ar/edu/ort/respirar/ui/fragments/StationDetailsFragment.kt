@@ -28,20 +28,14 @@ class StationDetailsFragment: Fragment(){
 
         val titulo: TextView = view.findViewById(R.id.stationDetailsTitle)
         val temperatura: LinearLayout = view.findViewById(R.id.stationDetailsTemperature)
-        val humedad: TextView = view.findViewById(R.id.humidityValue)
-        val fiabilidad: TextView = view.findViewById(R.id.reliabilityValue)
-        val precipitaciones: TextView = view.findViewById(R.id.precipitationsValue)
+        val humedad: LinearLayout = view.findViewById(R.id.stationDetailsHumidity)
+        val fiabilidad:  LinearLayout = view.findViewById(R.id.stationDetailsReliability)
+        val precipitaciones:  LinearLayout = view.findViewById(R.id.stationDetailsPrecipitations)
         val property5: TextView = view.findViewById(R.id.property5Value)
         val property6: TextView = view.findViewById(R.id.property6Value)
-        val humidityProgressBar: ProgressBar = view.findViewById(R.id.humidityCircularProgressBar)
-        val reliabilityProgressBar: ProgressBar = view.findViewById(R.id.reliabilityCircularProgressBar)
-        val precipitationsProgressBar: ProgressBar = view.findViewById(R.id.precipitationsCircularProgressBar)
         val property5ProgressBar: ProgressBar = view.findViewById(R.id.property5CircularProgressBar)
         val property6ProgressBar: ProgressBar = view.findViewById(R.id.property6CircularProgressBar)
 
-        humidityProgressBar.max = 100
-        reliabilityProgressBar.max = 100
-        precipitationsProgressBar.max = 100
         property5ProgressBar.max = 100
         property6ProgressBar.max = 100
 
@@ -51,14 +45,11 @@ class StationDetailsFragment: Fragment(){
         if (station != null) {
             titulo.text = station.titulo
             stationViewModel.getTemperatureDetails(station.temperatura, temperatura, false)
-            humedad.text = station.humedad.toString()
-            fiabilidad.text = station.reliability.toString()
-            precipitaciones.text = 90.toString()
+            stationViewModel.getHumidityDetails(station.humedad, humedad, false)
+            stationViewModel.getReliabilityDetails(station.reliability, fiabilidad, false)
+            stationViewModel.getPrecipitationsDetails(station.precipitations, precipitaciones, false)
             property5.text = 80.toString()
             property6.text = 20.toString()
-            animateCircularProgressBar(humidityProgressBar, station.humedad)
-            animateCircularProgressBar(reliabilityProgressBar, station.reliability)
-            animateCircularProgressBar(precipitationsProgressBar, 90.1)
             animateCircularProgressBar(property5ProgressBar, 80.3)
             animateCircularProgressBar(property6ProgressBar, 20.1)
         }
