@@ -50,5 +50,14 @@
     <fragment
         android:id="@+id/stationDetailsFragment"
         android:name="ar.edu.ort.respirar.ui.fragments.StationDetailsFragment"
-        android:label="StationDetailsFragment" />
+        android:label="StationDetailsFragment" >
+        <action
+            android:id="@+id/action_stationDetailsFragment_to_stationHistoricoFragment"
+            app:destination="@id/stationHistoricoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/stationHistoricoFragment"
+        android:name="ar.edu.ort.respirar.ui.fragments.StationHistoricoFragment"
+        android:label="fragment_station_historico"
+        tools:layout="@layout/fragment_station_historico" />
 </navigation>

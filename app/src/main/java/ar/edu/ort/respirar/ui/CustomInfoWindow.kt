@@ -12,7 +12,7 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.infowindow.InfoWindow
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.adapters.StationCarouselAdapter
-import ar.edu.ort.respirar.data.models.CustomStation
+import ar.edu.ort.respirar.domain.models.CustomStation
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 
 class CustomInfoWindow(

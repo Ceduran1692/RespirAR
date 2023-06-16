@@ -13,67 +13,30 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.models.CustomStation
+import ar.edu.ort.respirar.domain.models.CustomStation
+import ar.edu.ort.respirar.domain.models.Historico
 import ar.edu.ort.respirar.domain.usecases.GetAllStationUseCase
+import ar.edu.ort.respirar.domain.usecases.GetHistoricosByIdBetweenDatesUseCase
+import ar.edu.ort.respirar.domain.usecases.GetHistoricosByIdUseCase
+import ar.edu.ort.respirar.domain.usecases.GetStationByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import org.osmdroid.util.GeoPoint
+import java.util.Date
 import javax.inject.Inject
 
 
 @HiltViewModel
 class StationViewModel @Inject constructor(
-    private val getAllStationUseCase: GetAllStationUseCase
-) : ViewModel(){
+    private val getAllStationUseCase: GetAllStationUseCase,
+    private val getHistoricosByIdUseCase: GetHistoricosByIdUseCase,
+    private val getStationByIdUseCase: GetStationByIdUseCase,
+    private val getHistoricosByIdBetweenDatesUseCase: GetHistoricosByIdBetweenDatesUseCase
+    ) : ViewModel(){
 
+    val station= MutableLiveData<CustomStation>()
+    val historicos= MutableLiveData<MutableList<Historico>>()
     val isLoading= MutableLiveData<Boolean>()
-//    val estaciones = mutableListOf(
-//        CustomStation(
-//            "1",
-//            GeoPoint(-34.670267, -58.370969),
-//            "Estacion 1",
-//            25.0,
-//            60.3,
-//            70.2,
-//            R.drawable.baseline_location_on_red_24
-//        ),
-//        CustomStation(
-//            "2",
-//            GeoPoint(-34.545278, -58.449722),
-//            "Estacion 2",
-//            18.3,
-//            20.3,
-//            50.6,
-//            R.drawable.baseline_location_on_red_24
-//        ),
-//        CustomStation(
-//            "3",
-//            GeoPoint(-34.63565, -58.36465),
-//            "Estacion 3",
-//            35.7,
-//            50.7,
-//            30.4,
-//            R.drawable.baseline_location_on_red_24
-//        ),
-//        CustomStation(
-//            "4",
-//            GeoPoint(-34.652064, -58.440119),
-//            "Estacion 4",
-//            12.1,
-//            60.2,
-//            90.2,
-//            R.drawable.baseline_location_on_red_24
-//        ),
-//        CustomStation(
-//            "5",
-//            GeoPoint(-34.6675, -58.368611),
-//            "Estacion 5",
-//            6.7,
-//            60.3,
-//            8.1,
-//            R.drawable.baseline_location_on_red_24
-//        )
-//    )
-
     val stationList= MutableLiveData<MutableList<CustomStation>>()
 
     fun getStations(){
@@ -91,8 +54,52 @@ class StationViewModel @Inject constructor(
 
     }
 
-    fun getStationById(id: String?): CustomStation? {
-        return stationList.value?.find { it.stationId == id }
+    fun getHistoricosById(stationId: String, attr:String){
+        Log.i("StationViewModel", "getHistoricosById() - init")
+        isLoading.postValue(true)
+        viewModelScope.launch {
+            var result= getHistoricosByIdUseCase(stationId, attr)
+            Log.i("CarViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
+            if(result.isNotEmpty()) {
+                historicos.postValue(result)
+            }
+            isLoading.postValue(false)
+        }
+        Log.i("CarViewModel", "getHistoricosById() - out")
+
+    }
+
+    fun getHistoricosById(stationId: String, attr:String, minDate: Date, maxDate:Date){
+        Log.i("StationViewModel", "getHistoricosById() - init")
+        isLoading.postValue(true)
+        viewModelScope.launch {
+            var result= getHistoricosByIdBetweenDatesUseCase(stationId,attr,minDate,maxDate)
+            Log.i("CarViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
+            if(result.isNotEmpty()) {
+                historicos.postValue(result)
+            }
+            isLoading.postValue(false)
+        }
+        Log.i("CarViewModel", "getHistoricosById() - out")
+
+    }
+    fun getStationById(id: String){
+        var result= stationList.value?.find { it.stationId == id}
+        if(result == null ) {
+            Log.i("StationViewModel", "getAllCars() - init")
+            isLoading.postValue(true)
+            viewModelScope.launch {
+                result = getStationByIdUseCase(id)
+                if (result != null) {
+                    station.postValue(result!!)
+                }
+                isLoading.postValue(false)
+
+                Log.i("CarViewModel", "result == null " + (result == null))
+            }
+        }
+        Log.i("CarViewModel", "getAllCars() - out")
+
     }
 
     fun getStationSensors(stationId: String): MutableMap<String, Double?> {
@@ -199,7 +206,7 @@ class StationViewModel @Inject constructor(
 
         parent.addView(precipitationsView)
     }
-
+/*
     fun getPm1Details(value: Double?, parent: ViewGroup, title: Boolean){
         val pm1View = LayoutInflater.from(parent.context).inflate(R.layout.details_pm1, parent, false)
         val pm1TextView = pm1View.findViewById<TextView>(R.id.details_pm1_value)
@@ -234,7 +241,7 @@ class StationViewModel @Inject constructor(
 
         parent.addView(pm10View)
     }
-
+*/
     private fun animateCircularProgressBar(progressBar: ProgressBar, progress: Double?) {
         progressBar.progress = 0
 

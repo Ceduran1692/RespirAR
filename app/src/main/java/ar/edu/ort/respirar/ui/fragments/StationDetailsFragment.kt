@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -39,10 +40,8 @@ class StationDetailsFragment: Fragment(){
         property5ProgressBar.max = 100
         property6ProgressBar.max = 100
 
-        val station = stationViewModel.getStationById(stationId)
 
-
-        if (station != null) {
+        stationViewModel.station.observe(viewLifecycleOwner) {station ->
             titulo.text = station.titulo
             stationViewModel.getTemperatureDetails(station.temperatura, temperatura, false)
             stationViewModel.getHumidityDetails(station.humedad, humedad, false)
@@ -54,6 +53,11 @@ class StationDetailsFragment: Fragment(){
             animateCircularProgressBar(property6ProgressBar, 20.1)
         }
 
+        stationViewModel.getStationById(stationId!!)
+
+        temperatura.setOnClickListener {
+            findNavController().navigate(R.id.action_stationDetailsFragment_to_stationHistoricoFragment)
+        }
         return view
     }
 

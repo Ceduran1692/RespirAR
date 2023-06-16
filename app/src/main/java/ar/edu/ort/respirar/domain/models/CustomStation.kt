@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.data.models
+package ar.edu.ort.respirar.domain.models
 
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.data.dto.station.StationDto

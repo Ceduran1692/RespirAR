@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.models.CustomStation
+import ar.edu.ort.respirar.domain.models.CustomStation
 import ar.edu.ort.respirar.holders.CustomViewHolder
 import ar.edu.ort.respirar.ui.fragments.StationListFragment
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel

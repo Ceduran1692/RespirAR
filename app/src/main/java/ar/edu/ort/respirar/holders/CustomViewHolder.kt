@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.models.CustomStation
+import ar.edu.ort.respirar.domain.models.CustomStation
 
 class CustomViewHolder(view: View): RecyclerView.ViewHolder(view) {
     //val itemImage: ImageView = view.findViewById(R.id.card_image)

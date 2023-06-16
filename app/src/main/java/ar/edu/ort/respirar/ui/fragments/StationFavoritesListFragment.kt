@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.adapters.CustomAdapter
-import ar.edu.ort.respirar.data.models.CustomStation
+import ar.edu.ort.respirar.domain.models.CustomStation
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 
 

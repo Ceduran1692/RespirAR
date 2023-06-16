@@ -62,16 +62,7 @@ class AboutUsFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-    companion object {
 
-        @JvmStatic
-        fun newInstance() =
-            AboutUsFragment().apply {
-                arguments = Bundle().apply {
-
-                }
-            }
-    }
 
     private fun initComponents(){
 

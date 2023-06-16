@@ -1,7 +1,7 @@
 package ar.edu.ort.respirar.domain.usecases
 
 import android.util.Log
-import ar.edu.ort.respirar.data.models.CustomStation
+import ar.edu.ort.respirar.domain.models.CustomStation
 import ar.edu.ort.respirar.data.service.StationService
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ class GetAllStationUseCase  @Inject constructor(
             result= mutableListOf()
 
             result.addAll(service.getAllStation())
-            Log.i("StationService","response.size: "+ result.size)
+            Log.i("GetAllCarsUseCase","response.size: "+ result.size)
 
             Log.i("GetAllCarsUseCase","GetAllCarsUseCase() - out")
             return result

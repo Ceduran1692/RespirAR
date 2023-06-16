@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.data.models
+package ar.edu.ort.respirar.domain.models
 
 import android.widget.ImageView
 import android.widget.TextView

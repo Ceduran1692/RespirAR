@@ -6,7 +6,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.models.ItemAboutUs
+import ar.edu.ort.respirar.domain.models.ItemAboutUs
 import com.airbnb.lottie.LottieAnimationView
 
 data class ItemAboutUsHolder(private val view: View):RecyclerView.ViewHolder(view) {

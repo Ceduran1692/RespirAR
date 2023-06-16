@@ -3,7 +3,7 @@ package ar.edu.ort.respirar.data.dummie
 import android.content.Context
 import android.util.Log
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.models.ItemAboutUs
+import ar.edu.ort.respirar.domain.models.ItemAboutUs
 
 class DummieData() {
 

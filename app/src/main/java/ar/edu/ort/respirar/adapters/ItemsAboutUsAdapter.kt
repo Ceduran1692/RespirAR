@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.models.ItemAboutUs
+import ar.edu.ort.respirar.domain.models.ItemAboutUs
 import ar.edu.ort.respirar.holders.ItemAboutUsHolder
 
 class ItemsAboutUsAdapter(
