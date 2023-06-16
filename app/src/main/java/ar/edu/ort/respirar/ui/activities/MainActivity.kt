@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
@@ -50,6 +51,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val navigationView: NavigationView = findViewById(R.id.navigationView)
         navigationView.setNavigationItemSelectedListener(this)
 
+        val colorMenu = ContextCompat.getColorStateList(this, R.color.MENU)
+        navigationView.setItemTextColor(colorMenu)
+        navigationView.setItemIconTintList(colorMenu)
+
         navController.navigate(R.id.homeFragment)
     }
 
@@ -63,7 +68,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.favorite -> navController.navigate(R.id.stationFavoritesListFragment)
             R.id.about_us -> navController.navigate(R.id.aboutUsFragment)
             R.id.settings -> Toast.makeText(this,"Configuracion", Toast.LENGTH_SHORT).show()
-            R.id.out -> Toast.makeText(this,"Salir", Toast.LENGTH_SHORT).show()
+            R.id.out -> finish()
         }
 
         drawer.closeDrawer(GravityCompat.START)

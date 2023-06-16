@@ -40,18 +40,14 @@ class StationViewModel @Inject constructor(
     val stationList= MutableLiveData<MutableList<CustomStation>>()
 
     fun getStations(){
-        Log.i("StationViewModel", "getAllCars() - init")
         isLoading.postValue(true)
         viewModelScope.launch {
             var result= getAllStationUseCase()
-            Log.i("CarViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
             if(result.isNotEmpty()) {
                 stationList.postValue(result)
             }
             isLoading.postValue(false)
         }
-        Log.i("CarViewModel", "getAllCars() - out")
-
     }
 
     fun getHistoricosById(stationId: String, attr:String){
@@ -59,13 +55,13 @@ class StationViewModel @Inject constructor(
         isLoading.postValue(true)
         viewModelScope.launch {
             var result= getHistoricosByIdUseCase(stationId, attr)
-            Log.i("CarViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
+            Log.i("StationViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
             if(result.isNotEmpty()) {
                 historicos.postValue(result)
             }
             isLoading.postValue(false)
         }
-        Log.i("CarViewModel", "getHistoricosById() - out")
+        Log.i("StationViewModel", "getHistoricosById() - out")
 
     }
 
@@ -74,32 +70,31 @@ class StationViewModel @Inject constructor(
         isLoading.postValue(true)
         viewModelScope.launch {
             var result= getHistoricosByIdBetweenDatesUseCase(stationId,attr,minDate,maxDate)
-            Log.i("CarViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
+            Log.i("StationViewModel", "result.isNotEmpty()= "+result.isNotEmpty())
             if(result.isNotEmpty()) {
                 historicos.postValue(result)
             }
             isLoading.postValue(false)
         }
-        Log.i("CarViewModel", "getHistoricosById() - out")
+        Log.i("StationViewModel", "getHistoricosById() - out")
 
     }
-    fun getStationById(id: String){
-        var result= stationList.value?.find { it.stationId == id}
-        if(result == null ) {
-            Log.i("StationViewModel", "getAllCars() - init")
-            isLoading.postValue(true)
-            viewModelScope.launch {
-                result = getStationByIdUseCase(id)
-                if (result != null) {
-                    station.postValue(result!!)
-                }
-                isLoading.postValue(false)
+//    fun getStationById(id: String){
+//        val result= stationList.value?.find { it.stationId == id}
+//        if(result == null ) {
+//            isLoading.postValue(true)
+//            viewModelScope.launch {
+//                val result = getStationByIdUseCase(id)
+//                if (result != null) {
+//                    station.postValue(result!!)
+//                }
+//                isLoading.postValue(false)
+//            }
+//        }
+//    }
 
-                Log.i("CarViewModel", "result == null " + (result == null))
-            }
-        }
-        Log.i("CarViewModel", "getAllCars() - out")
-
+    fun getStationById(id: String?): CustomStation? {
+        return stationList.value?.find { it.stationId == id }
     }
 
     fun getStationSensors(stationId: String): MutableMap<String, Double?> {
@@ -119,6 +114,7 @@ class StationViewModel @Inject constructor(
         val temperatureTextView = temperatureView.findViewById<TextView>(R.id.details_temperature_value)
         val temperatureIconView = temperatureView.findViewById<ImageView>(R.id.details_temperature_icon)
         val temperatureCelsiusView = temperatureView.findViewById<TextView>(R.id.details_temperature_celsius)
+        val temperatureTitle = temperatureView.findViewById<TextView>(R.id.details_temperatureTitle)
         temperatureTextView.text = value?.toInt().toString()
         when {
             value != null -> {
@@ -127,21 +123,25 @@ class StationViewModel @Inject constructor(
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.COLD))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
+                        temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
                     }
                     value >= 10 && value < 20 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
+                        temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
                     }
                     value >= 20 && value < 30 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.WARM))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
+                        temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
                     }
                     value >= 30 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
                         temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.HOT))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
+                        temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
                     }
                 }
             }
@@ -149,7 +149,6 @@ class StationViewModel @Inject constructor(
             }
         }
         if(!title){
-            val temperatureTitle = temperatureView.findViewById<TextView>(R.id.details_temperatureTitle)
             temperatureTitle.visibility = View.GONE
         }
 

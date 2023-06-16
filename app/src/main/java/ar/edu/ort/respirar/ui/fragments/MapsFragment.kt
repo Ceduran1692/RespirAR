@@ -120,7 +120,7 @@ class MapsFragment : Fragment()  {
     private fun searchMarkerByTitle(title: String) {
         val overlayItems = overlayManager.overlays()
         for (overlay in overlayItems) {
-            if (overlay is Marker && overlay.title == title) {
+            if (overlay is Marker && overlay.title.equals(title, ignoreCase = true)) {
                 val markerPosition = overlay.position
                 mapView.controller.animateTo(markerPosition, 15.0, 2000L)
                 overlay.showInfoWindow()

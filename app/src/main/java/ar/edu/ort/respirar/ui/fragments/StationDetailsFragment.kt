@@ -40,8 +40,11 @@ class StationDetailsFragment: Fragment(){
         property5ProgressBar.max = 100
         property6ProgressBar.max = 100
 
+        val station = stationViewModel.getStationById(stationId)
+        stationViewModel.getStationById(stationId!!)
 
-        stationViewModel.station.observe(viewLifecycleOwner) {station ->
+        if (station != null) {
+        //stationViewModel.station.observe(viewLifecycleOwner) {station ->
             titulo.text = station.titulo
             stationViewModel.getTemperatureDetails(station.temperatura, temperatura, false)
             stationViewModel.getHumidityDetails(station.humedad, humedad, false)
@@ -52,8 +55,6 @@ class StationDetailsFragment: Fragment(){
             animateCircularProgressBar(property5ProgressBar, 80.3)
             animateCircularProgressBar(property6ProgressBar, 20.1)
         }
-
-        stationViewModel.getStationById(stationId!!)
 
         temperatura.setOnClickListener {
             findNavController().navigate(R.id.action_stationDetailsFragment_to_stationHistoricoFragment)

@@ -31,16 +31,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
-                android:textColor="@color/appbar_background_color"
+                android:textColor="@color/COLD"
                 android:text="25"
                 android:textStyle="bold"/>
+
             <TextView
                 android:id="@+id/details_reliabilityTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Fiabilidad"
                 android:textSize="15sp"
-                android:textColor="@color/appbar_background_color"
+                android:textColor="@color/COLD"
                 android:textStyle="bold"/>
 
         </LinearLayout>
