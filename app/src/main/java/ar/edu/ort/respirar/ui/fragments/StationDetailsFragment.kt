@@ -32,6 +32,7 @@ class StationDetailsFragment: Fragment(){
     private val binding get() = _binding!!
     private val stationViewModel: StationViewModel by activityViewModels()
     private var stationId:String? = null
+    private var stationName:String? = null
     private lateinit var cardsViews:MutableList<View>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -71,44 +72,13 @@ class StationDetailsFragment: Fragment(){
         binding.property5CircularProgressBar.max= 100
         binding.property6CircularProgressBar.max= 100
     }
-    private fun initObserve(){
 
-
-/*
-        val titulo:  TextView = view.findViewById(R.id.stationDetailsTitle)
-        val temperatura: LinearLayout = view.findViewById(R.id.stationDetailsTemperature)
-        val humedad: LinearLayout = view.findViewById(R.id.stationDetailsHumidity)
-        val fiabilidad:  LinearLayout = view.findViewById(R.id.stationDetailsReliability)
-        val precipitaciones:  LinearLayout = view.findViewById(R.id.stationDetailsPrecipitations)
-        val property5: TextView = view.findViewById(R.id.property5Value)
-        val property6: TextView = view.findViewById(R.id.property6Value)
-        val property5ProgressBar: ProgressBar = view.findViewById(R.id.property5CircularProgressBar)
-        val property6ProgressBar: ProgressBar = view.findViewById(R.id.property6CircularProgressBar)
-
-        property5ProgressBar.max = 100
-        property6ProgressBar.max = 100*/
-
-
-            stationViewModel.station.observe(viewLifecycleOwner) {station ->
-            //titulo.text = station.titulo
-            stationViewModel.getTemperatureDetails(station.temperatura, binding.stationDetailsTemperature, false)
-            stationViewModel.getHumidityDetails(station.humedad, binding.stationDetailsHumidity, false)
-            stationViewModel.getReliabilityDetails(station.reliability, binding.stationDetailsReliability, false)
-            stationViewModel.getPrecipitationsDetails(station.precipitations, binding.stationDetailsPrecipitations, false)
-            binding.property5Value.text= 80.toString()
-            binding.property6Value.text= 20.toString()
-            //property5.text = 80.toString()
-            //property6.text = 20.toString()
-            animateCircularProgressBar(binding.property5CircularProgressBar, 80.3)
-            animateCircularProgressBar(binding.property6CircularProgressBar, 20.1)
-        }
-    }
 
     private fun initListeners(){
-       onClickDetailListener(binding.stationDetailsTemperature,"temperature")
-       onClickDetailListener(binding.stationDetailsReliability,"reliability")
-       onClickDetailListener(binding.stationDetailsPrecipitations,"precipitation")
-       onClickDetailListener(binding.stationDetailsHumidity,"relativeHumidity")
+       onClickDetailListener(binding.stationDetailsTemperature,"temperature","c°",60.0)
+       onClickDetailListener(binding.stationDetailsReliability,"reliability","%",100.0)
+       onClickDetailListener(binding.stationDetailsPrecipitations,"precipitation","mm",35.0)
+       onClickDetailListener(binding.stationDetailsHumidity,"relativeHumidity","%",100.0)
 
     }
 
@@ -129,11 +99,28 @@ class StationDetailsFragment: Fragment(){
     }
 
     private fun initObservers(){
+        stationViewModel.isLoading.observe(viewLifecycleOwner, { loading ->
+            loadingProgressBar(loading)
+        })
         stationViewModel.station.observe(viewLifecycleOwner){station ->
+            stationName= station.titulo.toString()
             setTemperatureDetails(station.temperatura)
             setPrecipitationsDetails(station.precipitations)
             setHumidityDetails(station.humedad)
             setReliabilityDetails(station.reliability)
+        }
+    }
+
+    private fun loadingProgressBar(loading: Boolean) {
+        if (loading) {
+            binding.pbStationDetails.visibility = View.VISIBLE
+            binding.stationDetailsTop.visibility = View.GONE
+            binding.gridLayoutStationDetails.visibility = View.GONE
+        } else {
+            binding.pbStationDetails.visibility = View.GONE
+            binding.stationDetailsTop.visibility = View.VISIBLE
+            binding.gridLayoutStationDetails.visibility = View.VISIBLE
+
         }
     }
 
@@ -306,11 +293,14 @@ class StationDetailsFragment: Fragment(){
         animator.start()
     }
 
-    private fun onClickDetailListener(view: View, attr:String){
+    private fun onClickDetailListener(view: View, attr:String,metricType:String,metricMaxValue:Double){
         view.setOnClickListener {
             val bundle = Bundle().apply {
                 putString("stationId", stationId)
+                putString("stationName", stationName)
                 putString("attr", attr)
+                putString("metricType", metricType)
+                putString("metricMaxValue", metricMaxValue.toString())
             }
             findNavController().navigate(R.id.action_stationDetailsFragment_to_stationHistoricoFragment, bundle)
 
