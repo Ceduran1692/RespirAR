@@ -3,6 +3,7 @@ package ar.edu.ort.respirar.ui.fragments
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,27 +14,27 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.adapters.CustomAdapter
+import ar.edu.ort.respirar.databinding.FragmentStationsListBinding
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 
 
 class StationListFragment : Fragment() {
 
+    private var _binding: FragmentStationsListBinding?=null
+    private val binding get()= _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CustomAdapter
     private val stationViewModel: StationViewModel by activityViewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_stations_list, container, false)
+        Log.i("CarListFragment","onCreateView() - init")
+        // Inflate the layout for this fragment
+        _binding= FragmentStationsListBinding.inflate(inflater,container,false)
+        val view = binding.root
         stationViewModel.getStations()
 
-        recyclerView = view.findViewById(R.id.stations_recycler)
-        adapter = CustomAdapter(stationViewModel, StationPreferences(requireContext()))
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = adapter
 
-        val navController = findNavController()
-        adapter.initNavController(navController)
 
         stationViewModel.stationList.observe(viewLifecycleOwner) { stations ->
             adapter.setData(stations)
@@ -42,6 +43,45 @@ class StationListFragment : Fragment() {
 
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initObservers()
+        initVmCarList()
+        initRecyclerView()
+
+    }
+
+
+    private fun initRecyclerView(){
+
+        //val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        binding.stationsRecycler.layoutManager = LinearLayoutManager(requireContext())
+
+        //viewModel.getAllCars()
+        //adapter.setData(carListTest)
+        adapter = CustomAdapter(stationViewModel, StationPreferences(requireContext()))
+        val navController = findNavController()
+        adapter.initNavController(navController)
+        binding.stationsRecycler.adapter = adapter
+
+    }
+
+    private fun initObservers() {
+        stationViewModel.isLoading.observe(viewLifecycleOwner, { loading ->
+            loadingProgressBar(loading)
+        })
+
+        stationViewModel.stationList.observe(viewLifecycleOwner) { cars ->
+            adapter.setData(cars.toMutableList())
+        }
+    }
+
+    private fun initVmCarList(){
+        stationViewModel.getStations()
+
+    }
+
 
     class StationPreferences(context: Context) {
         private val sharedPreferences: SharedPreferences = context.getSharedPreferences("StationPreferences", Context.MODE_PRIVATE)
@@ -56,5 +96,16 @@ class StationListFragment : Fragment() {
             editor.apply()
         }
     }
+
+    private fun loadingProgressBar(loading: Boolean) {
+        if (loading) {
+            binding.pbRvStationList.visibility = View.VISIBLE
+            binding.stationsRecycler.visibility = View.GONE
+        } else {
+            binding.pbRvStationList.visibility = View.GONE
+            binding.stationsRecycler.visibility = View.VISIBLE
+        }
+    }
+
 
 }

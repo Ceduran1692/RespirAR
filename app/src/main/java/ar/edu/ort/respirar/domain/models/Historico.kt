@@ -6,7 +6,8 @@ data class Historico(
     val recvTime:String,
     val entityId:String,
     val attrName:String,
+    val attrType:String,
     val attrValue:String
 )
 
-fun HistoricoDto.toDomain()= Historico(recvTime, entityId, attrName, attrValue)
+fun HistoricoDto.toDomain()= Historico(recvTime, entityId, attrName, attrType ,attrValue)

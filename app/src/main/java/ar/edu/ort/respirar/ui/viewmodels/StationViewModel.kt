@@ -93,8 +93,29 @@ class StationViewModel @Inject constructor(
 //        }
 //    }
 
-    fun getStationById(id: String?): CustomStation? {
-        return stationList.value?.find { it.stationId == id }
+    fun getStationById(id: String) {
+        Log.i("StationViewModel", "getStationById() - init")
+        var result= stationList.value?.find { it.stationId == id}
+        Log.i("StationViewModel", "result= "+ result.toString())
+        if(result == null  ) {
+            Log.i("StationViewModel", "getStationById() - init")
+            isLoading.postValue(true)
+            viewModelScope.launch {
+                result = getStationByIdUseCase(id)
+                if (result != null) {
+                    station.postValue(result!!)
+                }
+                isLoading.postValue(false)
+
+                Log.i("StationViewModel", "result == null " + (result == null))
+            }
+        }else{
+            station.postValue(result!!)
+            isLoading.postValue(false)
+
+        }
+        Log.i("StationViewModel", "getStationById() - out")
+
     }
 
     fun getStationSensors(stationId: String): MutableMap<String, Double?> {
@@ -109,7 +130,7 @@ class StationViewModel @Inject constructor(
         return sensors
     }
 
-    fun getTemperatureDetails(value: Double?, parent: ViewGroup,title: Boolean){
+    fun getTemperatureDetails(value: Double?, parent: ViewGroup,title: Boolean):View{
         val temperatureView = LayoutInflater.from(parent.context).inflate(R.layout.details_temperature, parent, false)
         val temperatureTextView = temperatureView.findViewById<TextView>(R.id.details_temperature_value)
         val temperatureIconView = temperatureView.findViewById<ImageView>(R.id.details_temperature_icon)
@@ -153,8 +174,9 @@ class StationViewModel @Inject constructor(
         }
 
         parent.addView(temperatureView)
+        return temperatureView
     }
-    fun getHumidityDetails(value: Double?,parent: ViewGroup, title: Boolean){
+    fun getHumidityDetails(value: Double?,parent: ViewGroup, title: Boolean):View{
         val humidityView = LayoutInflater.from(parent.context).inflate(R.layout.details_humidity, parent, false)
         val humidityTextView = humidityView.findViewById<TextView>(R.id.details_humidity_value)
         val valorPorcentual = value!! * 100
@@ -172,9 +194,10 @@ class StationViewModel @Inject constructor(
         }
 
         parent.addView(humidityView)
+        return humidityView
     }
 
-    fun getReliabilityDetails(value: Double?, parent: ViewGroup, title: Boolean){
+    fun getReliabilityDetails(value: Double?, parent: ViewGroup, title: Boolean):View{
         val reliabilityView = LayoutInflater.from(parent.context).inflate(R.layout.details_reliability, parent, false)
         val reliabilityTextView = reliabilityView.findViewById<TextView>(R.id.details_reliability_value)
         val valorPorcentual = value!! * 100
@@ -191,9 +214,10 @@ class StationViewModel @Inject constructor(
         }
 
         parent.addView(reliabilityView)
+        return reliabilityView
     }
 
-    fun getPrecipitationsDetails(value: Double?, parent: ViewGroup, title: Boolean){
+    fun getPrecipitationsDetails(value: Double?, parent: ViewGroup, title: Boolean):View{
         val precipitationsView = LayoutInflater.from(parent.context).inflate(R.layout.details_precipitations, parent, false)
         val precipitationsTextView = precipitationsView.findViewById<TextView>(R.id.details_precipitations_value)
         precipitationsTextView.text = value.toString()
@@ -204,6 +228,7 @@ class StationViewModel @Inject constructor(
         }
 
         parent.addView(precipitationsView)
+        return precipitationsView
     }
 /*
     fun getPm1Details(value: Double?, parent: ViewGroup, title: Boolean){
