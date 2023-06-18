@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.ui.fragments
+package ar.edu.ort.respirar.ui.views.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +13,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
-import ar.edu.ort.respirar.adapters.ItemsAboutUsAdapter
+import ar.edu.ort.respirar.ui.views.adapters.ItemsAboutUsAdapter
 import ar.edu.ort.respirar.databinding.FragmentAboutUsBinding
 import ar.edu.ort.respirar.data.dummie.DummieData
 import com.airbnb.lottie.LottieAnimationView

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ar.edu.ort.respirar.ui.fragments.HomeFragment"
+        android:name="ar.edu.ort.respirar.ui.views.fragments.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
-        android:name="ar.edu.ort.respirar.ui.fragments.MapsFragment"
+        android:name="ar.edu.ort.respirar.ui.views.fragments.MapsFragment"
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" >
         <action
@@ -34,22 +34,22 @@
     </fragment>
     <fragment
         android:id="@+id/stationListFragment"
-        android:name="ar.edu.ort.respirar.ui.fragments.StationListFragment"
+        android:name="ar.edu.ort.respirar.ui.views.fragments.StationListFragment"
         android:label="fragment_stations_list"
         tools:layout="@layout/fragment_stations_list" />
     <fragment
         android:id="@+id/aboutUsFragment"
-        android:name="ar.edu.ort.respirar.ui.fragments.AboutUsFragment"
+        android:name="ar.edu.ort.respirar.ui.views.fragments.AboutUsFragment"
         android:label="fragment_about_us"
         tools:layout="@layout/fragment_about_us" />
     <fragment
         android:id="@+id/stationFavoritesListFragment"
-        android:name="ar.edu.ort.respirar.ui.fragments.StationFavoritesListFragment"
+        android:name="ar.edu.ort.respirar.ui.views.fragments.StationFavoritesListFragment"
         android:label="fragment_favorites_station_list"
         tools:layout="@layout/fragment_favorites_station_list" />
     <fragment
         android:id="@+id/stationDetailsFragment"
-        android:name="ar.edu.ort.respirar.ui.fragments.StationDetailsFragment"
+        android:name="ar.edu.ort.respirar.ui.views.fragments.StationDetailsFragment"
         android:label="StationDetailsFragment" >
         <action
             android:id="@+id/action_stationDetailsFragment_to_stationHistoricoFragment"
@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/stationHistoricoFragment"
-        android:name="ar.edu.ort.respirar.ui.fragments.StationHistoricoFragment"
+        android:name="ar.edu.ort.respirar.ui.views.fragments.StationHistoricoFragment"
         android:label="fragment_station_historico"
         tools:layout="@layout/fragment_station_historico" />
 </navigation>

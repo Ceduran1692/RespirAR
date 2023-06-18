@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.holders
+package ar.edu.ort.respirar.ui.views.holders
 
 import android.view.View
 import android.widget.ImageView

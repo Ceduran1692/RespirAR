@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.ui.activities
+package ar.edu.ort.respirar.ui.views.activities
 
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.ui.fragments
+package ar.edu.ort.respirar.ui.views.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.adapters.CustomAdapter
+import ar.edu.ort.respirar.ui.views.adapters.CustomAdapter
 import ar.edu.ort.respirar.domain.models.CustomStation
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 
@@ -27,7 +27,9 @@ class StationFavoritesListFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_stations_list, container, false)
 
         recyclerView = view.findViewById(R.id.stations_recycler)
-        adapter = CustomAdapter(stationViewModel, StationListFragment.StationPreferences(requireContext()))
+        adapter = CustomAdapter(stationViewModel,
+            StationListFragment.StationPreferences(requireContext())
+        )
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = adapter

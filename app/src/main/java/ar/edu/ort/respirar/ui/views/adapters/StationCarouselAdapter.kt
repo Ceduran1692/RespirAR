@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.adapters
+package ar.edu.ort.respirar.ui.views.adapters
 
 import android.os.Handler
 import android.os.Looper

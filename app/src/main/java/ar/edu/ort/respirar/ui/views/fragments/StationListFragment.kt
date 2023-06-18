@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.ui.fragments
+package ar.edu.ort.respirar.ui.views.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.adapters.CustomAdapter
+import ar.edu.ort.respirar.ui.views.adapters.CustomAdapter
 import ar.edu.ort.respirar.databinding.FragmentStationsListBinding
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 

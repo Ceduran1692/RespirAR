@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.adapters
+package ar.edu.ort.respirar.ui.views.adapters
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.domain.models.CustomStation
-import ar.edu.ort.respirar.holders.CustomViewHolder
-import ar.edu.ort.respirar.ui.fragments.StationListFragment
+import ar.edu.ort.respirar.ui.views.holders.CustomViewHolder
+import ar.edu.ort.respirar.ui.views.fragments.StationListFragment
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 
 class CustomAdapter(

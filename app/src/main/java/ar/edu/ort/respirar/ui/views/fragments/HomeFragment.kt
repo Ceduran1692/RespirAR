@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.ui.fragments
+package ar.edu.ort.respirar.ui.views.fragments
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

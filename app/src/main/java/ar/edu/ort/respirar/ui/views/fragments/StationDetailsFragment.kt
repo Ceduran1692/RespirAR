@@ -1,4 +1,4 @@
-package ar.edu.ort.respirar.ui.fragments
+package ar.edu.ort.respirar.ui.views.fragments
 
 import android.animation.ObjectAnimator
 import android.os.Bundle

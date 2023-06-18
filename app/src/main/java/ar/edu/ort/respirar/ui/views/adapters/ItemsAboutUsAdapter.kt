@@ -1,11 +1,11 @@
-package ar.edu.ort.respirar.adapters
+package ar.edu.ort.respirar.ui.views.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.domain.models.ItemAboutUs
-import ar.edu.ort.respirar.holders.ItemAboutUsHolder
+import ar.edu.ort.respirar.ui.views.holders.ItemAboutUsHolder
 
 class ItemsAboutUsAdapter(
     val  itemList: MutableList<ItemAboutUs>
