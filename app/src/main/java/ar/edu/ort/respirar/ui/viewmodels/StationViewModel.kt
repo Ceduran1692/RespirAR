@@ -21,7 +21,6 @@ import ar.edu.ort.respirar.domain.usecases.GetHistoricosByIdUseCase
 import ar.edu.ort.respirar.domain.usecases.GetStationByIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import org.osmdroid.util.GeoPoint
 import java.util.Date
 import javax.inject.Inject
 
@@ -79,19 +78,7 @@ class StationViewModel @Inject constructor(
         Log.i("StationViewModel", "getHistoricosById() - out")
 
     }
-//    fun getStationById(id: String){
-//        val result= stationList.value?.find { it.stationId == id}
-//        if(result == null ) {
-//            isLoading.postValue(true)
-//            viewModelScope.launch {
-//                val result = getStationByIdUseCase(id)
-//                if (result != null) {
-//                    station.postValue(result!!)
-//                }
-//                isLoading.postValue(false)
-//            }
-//        }
-//    }
+
 
     fun getStationById(id: String) {
         Log.i("StationViewModel", "getStationById() - init")
@@ -142,25 +129,25 @@ class StationViewModel @Inject constructor(
                 when {
                     value < 10 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
-                        temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.COLD))
+                        temperatureIconView.setImageDrawable(ContextCompat.getDrawable(parent.context, R.drawable.temperature_cold))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
                         temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.COLD))
                     }
                     value >= 10 && value < 20 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
-                        temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
+                        temperatureIconView.setImageDrawable(ContextCompat.getDrawable(parent.context, R.drawable.temperature_neutral))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
                         temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.NEUTRAL))
                     }
                     value >= 20 && value < 30 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
-                        temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.WARM))
+                        temperatureIconView.setImageDrawable(ContextCompat.getDrawable(parent.context, R.drawable.temperature_warm))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
                         temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.WARM))
                     }
                     value >= 30 -> {
                         temperatureTextView.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
-                        temperatureIconView.setColorFilter(ContextCompat.getColor(parent.context, R.color.HOT))
+                        temperatureIconView.setImageDrawable(ContextCompat.getDrawable(parent.context, R.drawable.temperature_hot))
                         temperatureCelsiusView.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
                         temperatureTitle.setTextColor(ContextCompat.getColor(parent.context, R.color.HOT))
                     }
@@ -180,17 +167,18 @@ class StationViewModel @Inject constructor(
         val humidityView = LayoutInflater.from(parent.context).inflate(R.layout.details_humidity, parent, false)
         val humidityTextView = humidityView.findViewById<TextView>(R.id.details_humidity_value)
         val valorPorcentual = value!! * 100
-        humidityTextView.text = valorPorcentual.toString() + " %"
+        val humidityValue = valorPorcentual.toInt()
+        humidityTextView.text = humidityValue.toString() + " %"
 
         val humidityProgressBar: ProgressBar = humidityView.findViewById(R.id.humidity_circular_ProgressBar)
         humidityProgressBar.max = 100
-        humidityProgressBar.progress = valorPorcentual.toInt()
+        humidityProgressBar.progress = humidityValue
 
 
         if(!title){
             val humidityTitle = humidityView.findViewById<TextView>(R.id.details_humidityTitle)
             humidityTitle.visibility = View.GONE
-            animateCircularProgressBar(humidityProgressBar, valorPorcentual)
+            animateCircularProgressBar(humidityProgressBar, humidityValue)
         }
 
         parent.addView(humidityView)
@@ -201,16 +189,17 @@ class StationViewModel @Inject constructor(
         val reliabilityView = LayoutInflater.from(parent.context).inflate(R.layout.details_reliability, parent, false)
         val reliabilityTextView = reliabilityView.findViewById<TextView>(R.id.details_reliability_value)
         val valorPorcentual = value!! * 100
-        reliabilityTextView.text = valorPorcentual.toString() + " %"
+        val reliabilityValue = valorPorcentual.toInt()
+        reliabilityTextView.text = reliabilityValue.toString() + " %"
 
         val reliabilityProgressBar: ProgressBar = reliabilityView.findViewById(R.id.reliability_circular_ProgressBar)
         reliabilityProgressBar.max = 100
-        reliabilityProgressBar.progress = valorPorcentual.toInt()
+        reliabilityProgressBar.progress = reliabilityValue
 
         if(!title){
             val reliabilityTitle = reliabilityView.findViewById<TextView>(R.id.details_reliabilityTitle)
             reliabilityTitle.visibility = View.GONE
-            animateCircularProgressBar(reliabilityProgressBar, valorPorcentual)
+            animateCircularProgressBar(reliabilityProgressBar, reliabilityValue)
         }
 
         parent.addView(reliabilityView)
@@ -230,19 +219,22 @@ class StationViewModel @Inject constructor(
         parent.addView(precipitationsView)
         return precipitationsView
     }
-/*
+
     fun getPm1Details(value: Double?, parent: ViewGroup, title: Boolean){
         val pm1View = LayoutInflater.from(parent.context).inflate(R.layout.details_pm1, parent, false)
         val pm1TextView = pm1View.findViewById<TextView>(R.id.details_pm1_value)
-        pm1TextView.text = value.toString()
+        val pm1Value = value!!.toInt()
+        pm1TextView.text = pm1Value.toString()
 
         val pm1ProgressBar: ProgressBar = pm1View.findViewById(R.id.pm1_circular_ProgressBar)
         pm1ProgressBar.max = 100
-        pm1ProgressBar.progress = value!!.toInt()
+        pm1ProgressBar.progress = pm1Value
 
         if(!title){
             val pm1Title = pm1View.findViewById<TextView>(R.id.details_pm1Title)
             pm1Title.visibility = View.GONE
+            animateCircularProgressBar(pm1ProgressBar, pm1Value)
+
         }
 
         parent.addView(pm1View)
@@ -251,25 +243,27 @@ class StationViewModel @Inject constructor(
     fun getPm10Details(value: Double?, parent: ViewGroup, title: Boolean){
         val pm10View = LayoutInflater.from(parent.context).inflate(R.layout.details_pm1, parent, false)
         val pm10TextView = pm10View.findViewById<TextView>(R.id.details_pm1_value)
-        pm10TextView.text = value.toString()
+        val pm10Value = value!!.toInt()
+        pm10TextView.text = pm10Value.toString()
 
 
         val pm10ProgressBar: ProgressBar = pm10View.findViewById(R.id.pm1_circular_ProgressBar)
         pm10ProgressBar.max = 100
-        pm10ProgressBar.progress = value!!.toInt()
+        pm10ProgressBar.progress = pm10Value
 
         if(!title){
             val pm10Title = pm10View.findViewById<TextView>(R.id.details_pm1Title)
             pm10Title.visibility = View.GONE
+            animateCircularProgressBar(pm10ProgressBar, pm10Value)
         }
 
         parent.addView(pm10View)
     }
-*/
-    private fun animateCircularProgressBar(progressBar: ProgressBar, progress: Double?) {
+
+    private fun animateCircularProgressBar(progressBar: ProgressBar, progress: Int?) {
         progressBar.progress = 0
 
-        val animator = ObjectAnimator.ofInt(progressBar, "progress", 0, progress!!.toInt())
+        val animator = ObjectAnimator.ofInt(progressBar, "progress", 0, progress!!)
         animator.duration = 700
         animator.start()
     }

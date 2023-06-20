@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/stationDetailsTop"
         android:layout_width="wrap_content"
@@ -71,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Temperatura"
+                    android:text="@string/sensor_temperature"
                     android:textColor="@color/appbar_background_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -119,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Humedad"
+                    android:text="@string/sensor_humidity"
                     android:textColor="@color/appbar_background_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -166,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Fiabilidad"
+                    android:text="@string/sensor_reliability"
                     android:textColor="@color/appbar_background_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -215,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="Precipitaciones"
+                    android:text="@string/sensor_precipitations"
                     android:textColor="@color/appbar_background_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -265,7 +266,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="PM 1"
+                    android:text="@string/sensor_pm1"
                     android:textColor="@color/appbar_background_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -277,32 +278,12 @@
                     android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ProgressBar
-                        android:id="@+id/property5CircularProgressBar"
-                        style="@style/CircularProgressBar"
-                        android:layout_width="120dp"
-                        android:layout_height="150dp"
-                        android:layout_centerInParent="true"
-                        android:max="100"
-                        android:progress="50" />
-
-                    <TextView
-                        android:id="@+id/property5Value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:textSize="40sp"
-                        android:textColor="@color/COLD"
-                        android:text="25"
-                        android:textStyle="bold"/>
-
-                </RelativeLayout>
-
+                <LinearLayout
+                    android:id="@+id/stationDetailsPm1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"/>
 
             </LinearLayout>
 
@@ -334,7 +315,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:text="PM 10"
+                    android:text="@string/sensor_pm10"
                     android:textColor="@color/appbar_background_color"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -346,31 +327,12 @@
                     android:layout_marginTop="5dp"
                     android:background="#E6E9F0" />
 
-
-                <RelativeLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <ProgressBar
-                        android:id="@+id/property6CircularProgressBar"
-                        style="@style/CircularProgressBar"
-                        android:layout_width="120dp"
-                        android:layout_height="150dp"
-                        android:layout_centerInParent="true"
-                        android:max="100"
-                        android:progress="50" />
-
-                    <TextView
-                        android:id="@+id/property6Value"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:text="25"
-                        android:textColor="@color/COLD"
-                        android:textSize="40sp"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
+                <LinearLayout
+                    android:id="@+id/stationDetailsPm10"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"/>
 
 
             </LinearLayout>

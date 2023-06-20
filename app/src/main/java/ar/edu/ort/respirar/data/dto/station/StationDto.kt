@@ -6,7 +6,7 @@ data class StationDto(
     var location: Location?,
     var name: Name?,
     var pm1: Pm1?,
-    var pm10: Pm1?,
+    var pm10: Pm10?,
     var pm25: Pm1?,
     var precipitation: Precipitation?,
     var relativeHumidity: RelativeHumidity?,

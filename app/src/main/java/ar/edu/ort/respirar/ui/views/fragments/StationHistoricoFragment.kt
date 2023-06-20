@@ -1,24 +1,19 @@
 package ar.edu.ort.respirar.ui.views.fragments
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import ar.edu.ort.respirar.R
-import ar.edu.ort.respirar.data.dummie.DummieData
-import ar.edu.ort.respirar.databinding.FragmentAboutUsBinding
 import ar.edu.ort.respirar.databinding.FragmentStationHistoricoBinding
 import ar.edu.ort.respirar.domain.models.Historico
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
-import java.time.LocalDate
 import java.util.Calendar
-import java.util.Date
 
 
 class StationHistoricoFragment : Fragment() {
@@ -34,17 +29,13 @@ class StationHistoricoFragment : Fragment() {
     private lateinit var metricType:String
     private lateinit var metricMaxValue:String
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        Log.i("about us fragment", "on create view")
+    ): View {
+
         _binding = FragmentStationHistoricoBinding.inflate(inflater, container, false)
         val view = binding.root
 
@@ -59,9 +50,9 @@ class StationHistoricoFragment : Fragment() {
     }
 
     private fun initObserver(){
-        stationViewModel.isLoading.observe(viewLifecycleOwner, { loading ->
+        stationViewModel.isLoading.observe(viewLifecycleOwner) { loading ->
             loadingProgressBar(loading)
-        })
+        }
 
         stationViewModel.historicos.observe(viewLifecycleOwner){
             setGraph(it)
@@ -76,11 +67,11 @@ class StationHistoricoFragment : Fragment() {
         metricType= arguments?.getString("metricType").toString()
         metricMaxValue= arguments?.getString("metricMaxValue").toString()
 
-        val fechaActual = Calendar.getInstance().time // Obtener la fecha actual
+        val fechaActual = Calendar.getInstance().time
 
         val calendar = Calendar.getInstance()
         calendar.time = fechaActual
-        calendar.add(Calendar.YEAR, -1) // Restar un año
+        calendar.add(Calendar.YEAR, -1)
 
         val fechaRestada = calendar.time
 
@@ -92,7 +83,6 @@ class StationHistoricoFragment : Fragment() {
 
         val chartModel : AAChartModel = generateChartModel(historicos)
 
-
         binding.aaChartView.aa_drawChartWithChartModel(chartModel)
 
     }
@@ -101,23 +91,33 @@ class StationHistoricoFragment : Fragment() {
         var attrArray:MutableList<Double> = mutableListOf(0.0)
         var dateArray:MutableList<String> = mutableListOf("")
         loadData(historicos,attrArray,dateArray,metricType)
+
+        val customAttr = getCustomAttrValue(attr)
+
+
         val model:AAChartModel= AAChartModel()
-            .chartType(AAChartType.Area)
-            .title("Historico")
-            .subtitle(stationName)
+            .chartType(AAChartType.Line)
+            .title("Datos Historicos")
+            .subtitle(customAttr)
             .backgroundColor("#ffffff")
             .dataLabelsEnabled(true)
             .yAxisTitle(metricType)
+            .axesTextColor("#00965A")
             .yAxisMax(metricMaxValue.toDouble())
             .yAxisLabelsEnabled(true)
             .categories(dateArray.toTypedArray())
             .series(arrayOf(
                 AASeriesElement()
-                    .name(attr)
-                    .colorByPoint(true)
+                    .name(customAttr)
+                    .color("#7692e4")
+                    .allowPointSelect(true)
+                    .lineWidth(3f)
                     .data(attrArray.toTypedArray()),
             )
             )
+            .colorsTheme(arrayOf("#7692e4"))
+        model.legendEnabled(false)
+
         return model
     }
 
@@ -137,6 +137,18 @@ class StationHistoricoFragment : Fragment() {
         } else {
             binding.pbRvHistoricList.visibility = View.GONE
             binding.graph.visibility = View.VISIBLE
+        }
+    }
+
+    private fun getCustomAttrValue(attr: String): String {
+        return when (attr) {
+            "temperature" -> getString(R.string.sensor_temperature)
+            "relativeHumidity" -> getString(R.string.sensor_humidity)
+            "reliability" -> getString(R.string.sensor_reliability)
+            "precipitation" -> getString(R.string.sensor_precipitations)
+            "pm1" -> getString(R.string.sensor_pm1)
+            "pm10" -> getString(R.string.sensor_pm10)
+            else -> "Historico"
         }
     }
 }

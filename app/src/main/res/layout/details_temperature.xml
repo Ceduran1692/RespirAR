@@ -14,8 +14,8 @@
 
         <ImageView
             android:id="@+id/details_temperature_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:src="@drawable/temperature_low_solid"/>
 
         <LinearLayout
@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="6dp"
                 android:text="25"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 android:textColor="#FF5722"
                 android:textStyle="bold"/>
 
@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="°C"
-                android:textSize="40sp"
+                android:textSize="35sp"
                 android:textColor="#FF5722"
                 android:textStyle="bold"/>
 

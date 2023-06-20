@@ -4,15 +4,15 @@
     android:layout_height="100dp"
     android:gravity="center"
     android:orientation="horizontal"
-    android:id="@+id/DetailsReliability">
+    android:id="@+id/DetailsPm10">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ProgressBar
-            android:id="@+id/reliability_circular_ProgressBar"
-            style="@style/CircularReliabilityProgressBar"
+            android:id="@+id/pm10_circular_ProgressBar"
+            style="@style/CircularProgressBar"
             android:layout_width="105dp"
             android:layout_height="105dp"
             android:layout_centerInParent="true"
@@ -27,20 +27,18 @@
             android:gravity="center">
 
             <TextView
-                android:id="@+id/details_reliability_value"
+                android:id="@+id/details_pm10_value"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="25sp"
+                android:textSize="30sp"
                 android:textColor="@color/COLD"
-                android:text="25"
                 android:textStyle="bold"/>
 
             <TextView
-                android:id="@+id/details_reliabilityTitle"
+                android:id="@+id/details_pm10Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sensor_reliability"
-                android:textSize="14sp"
+                android:textSize="15sp"
                 android:textColor="@color/COLD"
                 android:textStyle="bold"/>
 

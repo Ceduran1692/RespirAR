@@ -40,24 +40,17 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/graph"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="40dp"
-        app:cardCornerRadius="20dp"
-        >
-
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        app:cardCornerRadius="10dp">
 
         <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
             android:id="@+id/aa_chart_view"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="match_parent">
 
         </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
 
     </androidx.cardview.widget.CardView>
-    <!-- <lecho.lib.hellocharts.view.LineChartView
-         android:id="@+id/lineChart"
-         android:layout_width="match_parent"
-         android:layout_height="0dp"
-         android:layout_weight="1" />
- -->
+
 </LinearLayout>

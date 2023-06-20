@@ -1,6 +1,8 @@
 package ar.edu.ort.respirar.domain.models
 
 import ar.edu.ort.respirar.R
+import ar.edu.ort.respirar.data.dto.station.Pm1
+import ar.edu.ort.respirar.data.dto.station.Pm10
 import ar.edu.ort.respirar.data.dto.station.StationDto
 import org.osmdroid.util.GeoPoint
 
@@ -12,6 +14,8 @@ data class CustomStation(
     val humedad: Double?,
     val reliability: Double?,
     val precipitations: Double?,
+    val pm1: Double?,
+    val pm10: Double?,
     val image: Int= 0,
     var isFavorite: Boolean? = false
     )
@@ -24,6 +28,8 @@ fun StationDto.toDomain()= CustomStation(
     humedad = relativeHumidity?.value,
     reliability= reliability?.value,
     precipitations= precipitation?.value,
+    pm1= pm1?.value,
+    pm10= pm10?.value,
     image = setImage()
 )
 

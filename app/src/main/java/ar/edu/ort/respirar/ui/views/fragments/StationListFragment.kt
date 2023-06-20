@@ -3,7 +3,6 @@ package ar.edu.ort.respirar.ui.views.fragments
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import ar.edu.ort.respirar.R
 import ar.edu.ort.respirar.ui.views.adapters.CustomAdapter
 import ar.edu.ort.respirar.databinding.FragmentStationsListBinding
 import ar.edu.ort.respirar.ui.viewmodels.StationViewModel
@@ -22,24 +19,17 @@ class StationListFragment : Fragment() {
 
     private var _binding: FragmentStationsListBinding?=null
     private val binding get()= _binding!!
-    private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: CustomAdapter
     private val stationViewModel: StationViewModel by activityViewModels()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.i("CarListFragment","onCreateView() - init")
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding= FragmentStationsListBinding.inflate(inflater,container,false)
         val view = binding.root
         stationViewModel.getStations()
 
-
-
-
         stationViewModel.stationList.observe(viewLifecycleOwner) { stations ->
             adapter.setData(stations)
         }
-
 
         return view
     }
@@ -55,11 +45,9 @@ class StationListFragment : Fragment() {
 
     private fun initRecyclerView(){
 
-        //val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         binding.stationsRecycler.layoutManager = LinearLayoutManager(requireContext())
 
-        //viewModel.getAllCars()
-        //adapter.setData(carListTest)
+
         adapter = CustomAdapter(stationViewModel, StationPreferences(requireContext()))
         val navController = findNavController()
         adapter.initNavController(navController)
@@ -68,9 +56,9 @@ class StationListFragment : Fragment() {
     }
 
     private fun initObservers() {
-        stationViewModel.isLoading.observe(viewLifecycleOwner, { loading ->
+        stationViewModel.isLoading.observe(viewLifecycleOwner) { loading ->
             loadingProgressBar(loading)
-        })
+        }
 
         stationViewModel.stationList.observe(viewLifecycleOwner) { cars ->
             adapter.setData(cars.toMutableList())

@@ -18,6 +18,14 @@ Ea unde dolorem est repellendus maiores aut illo nesciunt aut doloremque soluta 
     <string name="station_list_name">Lista de Estaciones</string>
     <string name="station_details_name">Detalles de Estacion</string>
 
+    <!--    Sensores-->
+    <string name="sensor_temperature">Temperatura</string>
+    <string name="sensor_humidity">Humedad</string>
+    <string name="sensor_precipitations">Precipitaciones</string>
+    <string name="sensor_reliability">Fiabilidad</string>
+    <string name="sensor_pm1">PM 1</string>
+    <string name="sensor_pm10">PM 10</string>
+
     <!--    Drawer-->
     <string name="navigation_drawer_open">Open</string>
     <string name="navigation_drawer_close">Close</string>
