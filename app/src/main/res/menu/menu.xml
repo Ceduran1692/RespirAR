@@ -4,24 +4,24 @@
         <item
             android:id="@+id/home"
             android:title="Home"
-            android:icon="@drawable/baseline_home_black_24"/>
+            android:icon="@drawable/menu_home"/>
         <item
             android:id="@+id/map"
             android:title="Mapa"
-            android:icon="@drawable/baseline_map_black_24"/>
+            android:icon="@drawable/menu_map"/>
         <item
             android:id="@+id/stations"
             android:title="Lista de Estaciones"
-            android:icon="@drawable/baseline_format_list_bulleted_black_24"/>
+            android:icon="@drawable/menu_stations"/>
 
         <item
             android:id="@+id/favorite"
             android:title="Favoritos"
-            android:icon="@drawable/baseline_favorite_black_24" />
+            android:icon="@drawable/menu_favorite" />
         <item
             android:id="@+id/about_us"
             android:title="Sobre Nosotros"
-            android:icon="@drawable/baseline_info_black_24" />
+            android:icon="@drawable/menu_about_us" />
     </group>
     <item android:title="Herramientas">
         <menu>
@@ -29,11 +29,11 @@
                 <item
                     android:id="@+id/settings"
                     android:title="Configuracion"
-                    android:icon="@drawable/baseline_settings_black_24"/>
+                    android:icon="@drawable/menu_settings" />
                 <item
                     android:id="@+id/out"
                     android:title="Salir"
-                    android:icon="@drawable/baseline_logout_black_24"/>
+                    android:icon="@drawable/menu_out"/>
             </group>
         </menu>
     </item>

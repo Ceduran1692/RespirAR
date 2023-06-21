@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="100dp"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:id="@+id/DetailsTemperature">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/details_temperature_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/temperature_low_solid"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/details_temperature_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:text="25"
+                android:textSize="35sp"
+                android:textColor="#FF5722"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/details_temperature_celsius"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="°C"
+                android:textSize="35sp"
+                android:textColor="#FF5722"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/details_temperatureTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Temperatura"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textStyle="bold"/>
+
+</LinearLayout>

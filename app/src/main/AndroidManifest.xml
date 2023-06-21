@@ -9,17 +9,19 @@
 
     <application
         android:allowBackup="true"
+        android:name=".AppContext"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_respirar_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_respirar_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         tools:targetApi="31"
-        android:enableOnBackInvokedCallback="true">
+        android:enableOnBackInvokedCallback="true"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.activities.splash.SplashActivity"
+            android:name=".ui.views.activities.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.views.activities.MainActivity"
             android:exported="false">
 
         </activity>

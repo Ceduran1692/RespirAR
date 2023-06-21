@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="HomeCardShape" parent="Widget.MaterialComponents.CardView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
+        <item name="cornerSizeBottomRight">20dp</item>
+        <item name="cardElevation">0dp</item>
+        <item name="cardBackgroundColor">@android:color/transparent</item>
+    </style>
+    <style name="translucentCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">20dp</item>
+        <item name="cornerSizeTopRight">20dp</item>
+        <item name="cornerSizeBottomLeft">20dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+        <item name="cardElevation">20dp</item>
+    </style>
+    <style name="CircularProgressBar" parent="Theme.AppCompat">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar</item>
+        <item name="android:progressTint">@color/COLD</item>
+    </style>
+    <style name="CircularHumidityProgressBar" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar</item>
+        <item name="android:progressTint">@color/COLD</item>
+    </style>
+    <style name="CircularReliabilityProgressBar" parent="@android:style/Widget.ProgressBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/circular_progress_bar</item>
+        <item name="android:progressTint">@color/COLD</item>
+    </style>
+</resources>
