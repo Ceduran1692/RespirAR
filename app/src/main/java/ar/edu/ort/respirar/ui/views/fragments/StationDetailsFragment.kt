@@ -62,8 +62,8 @@ class StationDetailsFragment: Fragment(){
        onClickDetailListener(binding.stationDetailsReliability,"reliability","%",100.0)
        onClickDetailListener(binding.stationDetailsPrecipitations,"precipitation","mm",100.0)
        onClickDetailListener(binding.stationDetailsHumidity,"relativeHumidity","%",100.0)
-       onClickDetailListener(binding.stationDetailsPm1,"pm1","%",100.0)
-       onClickDetailListener(binding.stationDetailsPm10,"pm10","%",100.0)
+       onClickDetailListener(binding.stationDetailsPm1,"pm1","n°",100.0)
+       onClickDetailListener(binding.stationDetailsPm10,"pm10","n°",100.0)
     }
 
     private fun initObservers(){

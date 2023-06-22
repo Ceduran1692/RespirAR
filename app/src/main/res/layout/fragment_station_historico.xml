@@ -6,51 +6,43 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/date_picker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:visibility="gone">
 
-        <DatePicker
-            android:id="@+id/datePickerStart"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <DatePicker
-            android:id="@+id/datePickerEnd"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-    </LinearLayout>
-
-    <ProgressBar
-    android:id="@+id/pb_rv_historic_list"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:progress="25"
-    android:visibility="visible"
-    android:progressTint="@color/white" />
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/graph"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
-        app:cardCornerRadius="10dp">
+        android:layout_gravity="center">
 
-        <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
-            android:id="@+id/aa_chart_view"
+        <ProgressBar
+            android:id="@+id/pb_rv_historic_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:progress="25"
+            android:visibility="visible"
+            android:progressTint="@color/white" />
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/graph"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            app:cardCornerRadius="10dp">
 
-        </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+            <com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
+                android:id="@+id/aa_chart_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    </androidx.cardview.widget.CardView>
+            </com.github.aachartmodel.aainfographics.aachartcreator.AAChartView>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+
+
+    </FrameLayout>
+
 
 </LinearLayout>
