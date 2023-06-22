@@ -67,15 +67,6 @@ class StationHistoricoFragment : Fragment() {
         metricType= arguments?.getString("metricType").toString()
         metricMaxValue= arguments?.getString("metricMaxValue").toString()
 
-        val fechaActual = Calendar.getInstance().time
-
-        val calendar = Calendar.getInstance()
-        calendar.time = fechaActual
-        calendar.add(Calendar.YEAR, -1)
-
-        val fechaRestada = calendar.time
-
-        println(fechaRestada)
 
     }
 
